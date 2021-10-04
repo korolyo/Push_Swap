@@ -5,10 +5,9 @@ void *ft_sa(t_dlist *stack_a)
 {
 	t_dlist temp;
 
-	stack_a->next->value = temp->value;
+	stack_a->next->value = temp.value;
 	stack_a->next->value = stack_a->value;
-	stack_a-value = temp->value;
-	ft_putstr("sa\n");
+	stack_a->value = temp.value;
 }
 
 //void *ft_sb(t_dlist *stack_b)
@@ -65,26 +64,26 @@ void *ft_sa(t_dlist *stack_a)
 int main(int argc, char **argv)
 {
 	t_dlist	*stack_a;
-	t_dlist	*stack_b;
-	int 	i;
-	int		j;
+//	t_dlist	*stack_b;
+	size_t  i;
+	size_t  j;
 
 	i = 0;
 	j = 0;
 	if (argc == 1)
 		return (0);
-	while (++i < argc)
+	while (++i < (size_t)argc)
 	{
 		while (++j < ft_strlen(argv[i]))
 		{
 			if (ft_isdigit(argv[i][j]) != 0)
 			{
-				ft_putstr("Error\n");
+				ft_putstr_fd("Error\n", 1);
 				return (0);
 			}
 		}
-		stack_a->value = ft_itoa(argv[i]);
-		ft_lstadd_back(*stack_a, stack_a);
+		stack_a->value = ft_atoi(argv[i]);
+		ft_lstadd_back(stack_a, stack_a);
 	}
 	return (0);
 }

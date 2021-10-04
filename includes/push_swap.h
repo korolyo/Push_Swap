@@ -5,12 +5,14 @@
 # include <stdint.h>
 # include <stdlib.h>
 
-typedef struct	s_dlist
+typedef struct s_dlist t_dlist;
+
+struct	s_dlist
 {
-	uint_64t	value;
-	uint_64t	score;
+	uint64_t	value;
+	uint64_t	score;
 	t_dlist		*next;
 	t_dlist		*prev;
-}				t_dlist;
+};
 
 #endif
