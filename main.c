@@ -1,70 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acollin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/06 20:38:28 by acollin           #+#    #+#             */
+/*   Updated: 2021/10/06 20:38:37 by acollin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
-void *ft_sa(t_dlist *stack_a)
+void	dlstadd_back(t_dlist **stack, t_dlist *newnode)
 {
-	t_dlist temp;
+	t_dlist	*final;
 
-	stack_a->next->value = temp.value;
-	stack_a->next->value = stack_a->value;
-	stack_a->value = temp.value;
+	if (!stack && !newnode)
+		return ;
+	if (!(*stack))
+	{
+		*stack = newnode;
+		return ;
+	}
+	final = *stack;
+	while (final->next != NULL)
+		final = final->next;
+	final->next = newnode;
+	newnode->prev = final;
 }
 
-//void *ft_sb(t_dlist *stack_b)
-//{
-//	ft_putstr("sb\n");
-//}
-//
-//void *ft_ss(t_dlist *stack_a, t_dlist *stack_b)
-//{
-//	ft_putstr("ss\n");
-//}
-//
-//void *ft_pa(t_dlist *stack_a)
-//{
-//	ft_putstr("pa\n");
-//}
-//
-//void *ft_pb(t_dlist *stack_b)
-//{
-//	ft_putstr("pb\n");
-//}
-//
-//void *ft_ra(t_dlist *stack_a)
-//{
-//	ft_putstr("ra\n");
-//}
-//
-//void *ft_rb(t_dlist *stack_b)
-//{
-//	ft_putstr("rb\n");
-//}
-//
-//void *ft_rr(t_dlist *stack_a, t_dlist *stack_b)
-//{
-//	ft_putstr("rr\n");
-//}
-//
-//void *ft_rra(t_dlist *stack_a)
-//{
-//	ft_putstr("rra\n");
-//}
-//
-//void *ft_rrb(t_dlist *stack_b)
-//{
-//	ft_putstr("rrb\n");
-//}
-//
-//void *ft_rrr(t_dlist *stack_a, t_dlist *stack_b)
-//{
-//
-//	ft_putstr("rrr\n");
-//}
+t_dlist	*dlistnew(int value)
+{
+	t_dlist	*tmp;
+
+	tmp = (t_dlist *) ft_calloc(sizeof (t_dlist), 1);
+	if (NULL == tmp)
+		return (NULL);
+	tmp->value = value;
+	tmp->score = 0;
+	tmp->next = NULL;
+	tmp->prev = NULL;
+	return ((t_dlist *)tmp);
+}
 
 int main(int argc, char **argv)
 {
 	t_dlist	*stack_a;
 //	t_dlist	*stack_b;
+	t_dlist *newnode;
 	size_t  i;
 	size_t  j;
 
@@ -74,7 +58,7 @@ int main(int argc, char **argv)
 		return (0);
 	while (++i < (size_t)argc)
 	{
-		while (++j < ft_strlen(argv[i]))
+		while (++j < ft_strlen(argv[i]) || argv[i][j] != ' ')
 		{
 			if (ft_isdigit(argv[i][j]) != 0)
 			{
@@ -82,8 +66,8 @@ int main(int argc, char **argv)
 				return (0);
 			}
 		}
-		stack_a->value = ft_atoi(argv[i]);
-		ft_lstadd_back(stack_a, stack_a);
+		newnode = dlistnew(ft_atoi(argv[i]));
+		dlstadd_back(&stack_a, newnode);
 	}
 	return (0);
 }
