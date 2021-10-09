@@ -29,6 +29,7 @@ struct	s_dlist
 
 t_dlist	*dlistnew(int data);
 int		dlstadd_back(t_dlist **stack, t_dlist *newnode);
+int		checkArgv(char **argv, int argc, t_dlist **stack_a);
 int		ft_sab(t_dlist **stack);
 int		ft_pab(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rab(t_dlist **stack);

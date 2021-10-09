@@ -12,6 +12,33 @@
 
 #include "push_swap.h"
 
+int	checkArgv(char **argv, int argc, t_dlist **stack_a)
+{
+	t_dlist *newnode;
+	size_t  i;
+	size_t  j;
+
+	i = 0;
+	j = 0;
+	if (argc < 2)
+		return (0);
+	while (++i < (size_t)argc)
+	{
+		j = 0;
+		while (++j < ft_strlen(argv[i]) || argv[i][j] != ' ')
+		{
+			if (!(ft_isdigit(argv[i][j])))
+			{
+				ft_putstr_fd("Error\n", 1);
+				return (0);
+			}
+		}
+		newnode = dlistnew(ft_atoi(argv[i]));
+		dlstadd_back(stack_a, newnode);
+	}
+	return (1);
+}
+
 int	dlstadd_back(t_dlist **stack, t_dlist *newnode)
 {
 	t_dlist	*final;
@@ -49,26 +76,8 @@ int main(int argc, char **argv)
 {
 	t_dlist	*stack_a;
 //	t_dlist	*stack_b;
-	t_dlist *newnode;
-	size_t  i;
-	size_t  j;
 
-	i = 0;
-	j = 0;
-	if (argc < 2)
+	if (!(checkArgv(argv, argc, &stack_a)))
 		return (0);
-	while (++i < (size_t)argc)
-	{
-		while (++j < ft_strlen(argv[i]) || argv[i][j] != ' ')
-		{
-			if (ft_isdigit(argv[i][j]) != 0)
-			{
-				ft_putstr_fd("Error\n", 1);
-				return (0);
-			}
-		}
-		newnode = dlistnew(ft_atoi(argv[i]));
-		dlstadd_back(&stack_a, newnode);
-	}
 	return (0);
 }

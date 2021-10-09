@@ -32,14 +32,13 @@ int	ft_pab(t_dlist **stack_a, t_dlist **stack_b)
 	t_dlist	*first;
 	t_dlist	*second;
 
-	if (!(*stack_b->next))
-		return (0);
-	first = dlistnew(*stack_b->data);
+	first = *stack_a;
 	second = *stack_b;
-	first->next = *stack_a;
-	*stack_a = first;
+	if (!(second && second->next))
+		return (0);
 	*stack_b = second->next;
-	free(second);
+	second->next = first;
+	*stack_a = second;
 	return (0);
 }
 
