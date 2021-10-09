@@ -6,38 +6,39 @@
 /*   By: acollin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:38:28 by acollin           #+#    #+#             */
-/*   Updated: 2021/10/06 20:38:37 by acollin          ###   ########.fr       */
+/*   Updated: 2021/10/09 12:01:13 by acollin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	dlstadd_back(t_dlist **stack, t_dlist *newnode)
+int	dlstadd_back(t_dlist **stack, t_dlist *newnode)
 {
 	t_dlist	*final;
 
 	if (!stack && !newnode)
-		return ;
+		return (0);
 	if (!(*stack))
 	{
 		*stack = newnode;
-		return ;
+		return (0);
 	}
 	final = *stack;
 	while (final->next != NULL)
 		final = final->next;
 	final->next = newnode;
 	newnode->prev = final;
+	return (0);
 }
 
-t_dlist	*dlistnew(int value)
+t_dlist	*dlistnew(int data)
 {
 	t_dlist	*tmp;
 
 	tmp = (t_dlist *) ft_calloc(sizeof (t_dlist), 1);
 	if (NULL == tmp)
 		return (NULL);
-	tmp->value = value;
+	tmp->data = data;
 	tmp->score = 0;
 	tmp->next = NULL;
 	tmp->prev = NULL;
@@ -54,7 +55,7 @@ int main(int argc, char **argv)
 
 	i = 0;
 	j = 0;
-	if (argc == 1)
+	if (argc < 2)
 		return (0);
 	while (++i < (size_t)argc)
 	{

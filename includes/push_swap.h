@@ -21,20 +21,20 @@ typedef struct s_dlist t_dlist;
 
 struct	s_dlist
 {
-	uint64_t	value;
+	uint64_t	data;
 	uint64_t	score;
 	t_dlist		*next;
 	t_dlist		*prev;
 };
 
-t_dlist	*dlistnew(int value);
-void	dlstadd_back(t_dlist **stack, t_dlist *newnode);
-void	*ft_sab(t_dlist **stack);
-void	*ft_pab(t_dlist **stack_a, t_dlist **stack_b);
-void	*ft_rab(t_dlist **stack);
-void	*ft_rrab(t_dlist **stack);
-void	*ft_ss(t_dlist **stack_a, t_dlist **stack_b);
-void	*ft_rr(t_dlist **stack_a, t_dlist **stack_b);
-void	*ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
+t_dlist	*dlistnew(int data);
+int		dlstadd_back(t_dlist **stack, t_dlist *newnode);
+int		ft_sab(t_dlist **stack);
+int		ft_pab(t_dlist **stack_a, t_dlist **stack_b);
+int		ft_rab(t_dlist **stack);
+int		ft_rrab(t_dlist **stack);
+int		ft_ss(t_dlist **stack_a, t_dlist **stack_b);
+int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
+int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
 
 #endif
