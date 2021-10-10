@@ -17,6 +17,8 @@
 # include <stdint.h>
 # include <stdlib.h>
 
+# include <stdio.h>
+
 typedef struct s_dlist t_dlist;
 
 struct	s_dlist
@@ -27,7 +29,7 @@ struct	s_dlist
 	t_dlist		*prev;
 };
 
-t_dlist	*dlistnew(int data);
+t_dlist	*ft_dlistnew(int data);
 int		dlstadd_back(t_dlist **stack, t_dlist *newnode);
 int		checkArgv(char **argv, int argc, t_dlist **stack_a);
 int		ft_sab(t_dlist **stack);
@@ -37,5 +39,6 @@ int		ft_rrab(t_dlist **stack);
 int		ft_ss(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
+int		checkDuplicates(int argc, char **argv);
 
 #endif

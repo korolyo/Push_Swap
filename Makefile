@@ -4,6 +4,7 @@ NAME	=	push_swap
 SOURCES_LIST	= 	main.c\
 					operations_one.c\
 					operations_two.c\
+					checkArgv.c
 
 
 CC		= gcc
