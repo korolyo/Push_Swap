@@ -20,6 +20,7 @@
 //# include <stdio.h>
 
 typedef struct s_dlist t_dlist;
+typedef struct s_data t_data;
 
 struct	s_dlist
 {
@@ -27,6 +28,11 @@ struct	s_dlist
 	uint64_t	score;
 	t_dlist		*next;
 	t_dlist		*prev;
+};
+
+struct	s_data
+{
+	uint64_t	args;
 };
 
 t_dlist	*ft_dlistnew(int data);
@@ -41,5 +47,6 @@ int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
 int		checkDuplicates(int argc, char **argv);
 void	sorting_small(t_dlist **stack_a, t_dlist **stack_b);
+void	sorting(t_dlist **stack_a, t_dlist **stack_b);
 
 #endif

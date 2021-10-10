@@ -49,11 +49,17 @@ int main(int argc, char **argv)
 {
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;
+	t_data	data;
 	int 	i;
 
 	i = 0;
 	if (!(checkArgv(argv, argc, &stack_a)))
 		exit (0);
 	stack_b = NULL;
+	if (data.args <= 6)
+		sorting_small(&stack_a, &stack_b);
+	else
+		sorting(&stack_a, &stack_b);
+	print_operations();
 	return (0);
 }
