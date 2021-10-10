@@ -40,5 +40,6 @@ int		ft_ss(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
 int		checkDuplicates(int argc, char **argv);
+void	sorting_small(t_dlist **stack_a, t_dlist **stack_b);
 
 #endif
