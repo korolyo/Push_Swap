@@ -49,17 +49,22 @@ int main(int argc, char **argv)
 {
 	t_dlist	*stack_a;
 	t_dlist	*stack_b;
-	t_data	data;
+//	t_data	data;
 	int 	i;
 
 	i = 0;
 	if (!(checkArgv(argv, argc, &stack_a)))
 		exit (0);
 	stack_b = NULL;
-	if (data.args <= 6)
-		sorting_small(&stack_a, &stack_b);
-	else
-		sorting(&stack_a, &stack_b);
-	print_operations();
+	while (stack_a->next != NULL)
+	{
+		printf("%llu\n", stack_a->data);
+		stack_a = stack_a->next;
+	}
+//	if (data.args <= 6)
+//		sorting_small(&stack_a, &stack_b);
+//	else
+//		sorting(&stack_a, &stack_b);
+//	print_operations();
 	return (0);
 }

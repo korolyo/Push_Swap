@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	sorting(t_dlist **stack_a, t_dlist **stack_b)
-{
-	;
-}
+//void	sorting(t_dlist **stack_a, t_dlist **stack_b)
+//{
+//	;
+//}
