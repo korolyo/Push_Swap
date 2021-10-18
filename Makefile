@@ -7,6 +7,7 @@ SOURCES_LIST	= 	main.c\
 					checkArgv.c\
 					sorting_small.c\
 					sorting.c\
+					error.c\
 
 CC		= gcc
 CFLAGS	=	-Werror -Wall -Wextra

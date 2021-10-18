@@ -12,9 +12,27 @@
 
 #include "push_swap.h"
 
-char	*split_args(char **number, char **argv, int i, int k)
+//char	*split_args(char **number, char **argv, int i, int k)
+//{
+//	number = *ft_split(argv[i], ' ');
+//}
+
+void	multi_arg(int argc, char **argv, t_dlist **stack_a)
 {
-	number = *ft_split(argv[i], ' ');
+	int	i;
+	int64_t	val;
+	t_dlist	*newnode;
+
+	i = 1;
+	while (i < argc)
+	{
+		val = ft_atol(argv[i]);
+		if (val < INT_MIN || val > INT_MAX)
+			error("Error");
+		newnode = dlistnew(val);
+		dlstadd_back(stack_a, newnode);
+		i++;
+	}
 }
 
 int	dupl_check(int argc, char **argv)
@@ -24,13 +42,14 @@ int	dupl_check(int argc, char **argv)
 
 	i = 0;
 	j = 0;
-	while (i < argc -1)
+	while (i < argc)
 	{
 		j = i + 1;
-		while (++j < argc - 1)
+		while (j < argc - 1)
 		{
 			if (ft_atol(argv[i]) == ft_atol(argv[j]))
-				return (0);
+				error("Error");
+			j++;
 		}
 		i++;
 	}
@@ -42,29 +61,30 @@ void valid_check(int argc, char **argv)
     int i;
     int j;
 
-    j = 0;
     i = 1;
     if (argc < 2)
-        eroor(EXIT_SUCCESS);
+		error("Error");
     while (i < argc)
     {
         j = 0;
-        while (j < ft_strlen(argv[i]))
+        while (j < (int)ft_strlen(argv[i]))
         {
-            if (!ft_isdigit(argv[i][j]) || (argv[i][j] == ' ' && (argv[i][j + 1] == ' ') || )
-                error;
+            if (!ft_isdigit(argv[i][j]))
+                error("Error");
+			j++;
         }
+		i++;
     }
 }
 
-void	checkArgv(char **argv, int argc, t_data *data)
+void	checkArgv(int argc, char **argv, t_data *data)
 {
     valid_check(argc, argv);
     dupl_check(argc, argv);
-    if (argc == 2)
-        single_arg(argc, argv, &data);
-    else if (argc > 2)
-        multi_arg(argc, argv, &data);
+//    if (argc == 2)
+//        single_arg(argc, argv, &data);
+    if (argc > 2)
+        multi_arg(argc, argv, &data->stack_a);
     else
-        error;
+		error("Error");
 }
