@@ -16,8 +16,9 @@
 # include "libft.h"
 # include <stdint.h>
 # include <stdlib.h>
-
-# include <stdio.h>
+# include <limits.h>
+//
+//# include <stdio.h>
 
 typedef struct s_dlist t_dlist;
 typedef struct s_data t_data;
@@ -32,7 +33,9 @@ struct	s_dlist
 
 struct	s_data
 {
-	uint64_t	args;
+    t_dlist     *stack_a;
+    t_dlist     *stack_b;
+//	uint64_t	args;
 };
 
 t_dlist	*ft_dlistnew(int data);
@@ -48,6 +51,6 @@ int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
 int		checkDuplicates(int argc, char **argv);
 void	sorting_small(t_dlist **stack_a, t_dlist **stack_b);
 void	sorting(t_dlist **stack_a, t_dlist **stack_b);
-char	*split_args(char **number, char **argv, int i, int k)
+void    init_data(t_data *data);
 
 #endif

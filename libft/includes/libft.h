@@ -17,9 +17,9 @@
 # include <stdlib.h>
 # include <string.h>
 # include <ctype.h>
+# include <stdint.h>
 # include <unistd.h>
 # include <stddef.h>
-
 
 typedef struct		s_list
 {
@@ -28,6 +28,7 @@ typedef struct		s_list
 }					t_list;
 
 int		ft_atoi(const char *nptr);
+int64_t ft_atol(const char *nptr);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 int		get_next_line(int fd, char **line);

@@ -11,12 +11,13 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 char	*split_args(char **number, char **argv, int i, int k)
 {
 	number = *ft_split(argv[i], ' ');
 }
 
-int	checkDuplicates(int argc, char **argv)
+int	dupl_check(int argc, char **argv)
 {
 	int  i;
 	int  j;
@@ -28,7 +29,7 @@ int	checkDuplicates(int argc, char **argv)
 		j = i + 1;
 		while (++j < argc - 1)
 		{
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+			if (ft_atol(argv[i]) == ft_atol(argv[j]))
 				return (0);
 		}
 		i++;
@@ -36,38 +37,34 @@ int	checkDuplicates(int argc, char **argv)
 	return (1);
 }
 
-int	checkArgv(char **argv, int argc, t_dlist **stack_a)
+void valid_check(int argc, char **argv)
 {
-	int		i;
-	int		j;
-	int 	k;
-	char	*args;
-	char	**number;
-	t_dlist	*newnode;
+    int i;
+    int j;
 
-	i = 1;
-	j = 0;
-	if (argc < 2 || !(checkDuplicates(argc, argv)))
-		return (0);
-	while (i < argc)
-	{
-		j = 0;
-		while ((j < (int)ft_strlen(argv[i])))
-		{
-			if (argv[i][j] == ' ')
-				k++;
-			else if (ft_isdigit(argv[i][j]) == 0)
-			{
-				ft_putstr_fd("Error\n", 1);
-				return (0);
-			}
-			split_args(number, argv, i, k);
-			*stack_a = ft_dlistnew(ft_atoi(argv[i]));
-			newnode = ft_dlistnew(ft_atoi(argv[i]));
-			dlstadd_back(stack_a, newnode);
-			j++;
-		}
-		i++;
-	}
-	return (1);
+    j = 0;
+    i = 1;
+    if (argc < 2)
+        eroor(EXIT_SUCCESS);
+    while (i < argc)
+    {
+        j = 0;
+        while (j < ft_strlen(argv[i]))
+        {
+            if (!ft_isdigit(argv[i][j]) || (argv[i][j] == ' ' && (argv[i][j + 1] == ' ') || )
+                error;
+        }
+    }
+}
+
+void	checkArgv(char **argv, int argc, t_data *data)
+{
+    valid_check(argc, argv);
+    dupl_check(argc, argv);
+    if (argc == 2)
+        single_arg(argc, argv, &data);
+    else if (argc > 2)
+        multi_arg(argc, argv, &data);
+    else
+        error;
 }

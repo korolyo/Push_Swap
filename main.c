@@ -31,40 +31,34 @@ int	dlstadd_back(t_dlist **stack, t_dlist *newnode)
 	return (0);
 }
 
-t_dlist	*ft_dlistnew(int data)
-{
-	t_dlist	*tmp;
+//t_dlist	*ft_dlistnew(int data)
+//{
+//	t_dlist	*tmp;
+//
+//	tmp = (t_dlist *) ft_calloc(sizeof (t_dlist), 1);
+//	if (NULL == tmp)
+//		return (NULL);
+//	tmp->data = data;
+//	tmp->score = 0;
+//	tmp->next = NULL;
+//	tmp->prev = NULL;
+//	return ((t_dlist *)tmp);
+//}
 
-	tmp = (t_dlist *) ft_calloc(sizeof (t_dlist), 1);
-	if (NULL == tmp)
-		return (NULL);
-	tmp->data = data;
-	tmp->score = 0;
-	tmp->next = NULL;
-	tmp->prev = NULL;
-	return ((t_dlist *)tmp);
+void    init_data(t_data *data)
+{
+    data->stack_a = NULL;
+    data->stack_b = NULL;
 }
 
 int main(int argc, char **argv)
 {
-	t_dlist	*stack_a;
-	t_dlist	*stack_b;
-//	t_data	data;
-	int 	i;
+	t_data	data;
 
-	i = 0;
-	if (!(checkArgv(argv, argc, &stack_a)))
-		exit (0);
-	stack_b = NULL;
-	while (stack_a->next != NULL)
-	{
-		printf("%llu\n", stack_a->data);
-		stack_a = stack_a->next;
-	}
-//	if (data.args <= 6)
-//		sorting_small(&stack_a, &stack_b);
-//	else
-//		sorting(&stack_a, &stack_b);
-//	print_operations();
-	return (0);
+    init_data(&data);
+    checkArgv(argc, argv, &data);
+//    sorting(&data);
+//    print_cmd();
+//    clear_data(&data);
+    exit(EXIT_SUCCESS);
 }
