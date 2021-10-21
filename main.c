@@ -37,7 +37,7 @@ t_dlist	*dlistnew(int data)
 	tmp = (t_dlist *) ft_calloc(sizeof (t_dlist), 1);
 	if (NULL == tmp)
 		return (NULL);
-	tmp->data = data;
+	tmp->value = data;
 	tmp->score = 0;
 	tmp->next = NULL;
 	tmp->prev = NULL;
@@ -58,7 +58,7 @@ void print(t_dlist *stack)
 	tmp = stack;
 	while (tmp)
 	{
-		printf("%llu<->", tmp->data);
+		printf("%llu<->", tmp->value);
 		tmp = tmp->next;									//DONT FORGET TO DELETE
 	}
 }
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 
     init_data(&data);
     checkArgv(argc, argv, &data);
-//    sorting(&data);
+    sorting(&data);
 //    print_cmd();
 //    clear_data(&data);
 	print(data.stack_a);

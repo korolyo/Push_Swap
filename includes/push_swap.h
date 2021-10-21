@@ -13,6 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# define SMALL_STACK 6
+
 # include "libft.h"
 # include <stdint.h>
 # include <stdlib.h>
@@ -25,7 +27,7 @@ typedef struct s_data t_data;
 
 struct	s_dlist
 {
-	uint64_t	data;
+	uint64_t	value;
 	uint64_t	score;
 	t_dlist		*next;
 	t_dlist		*prev;
@@ -35,7 +37,7 @@ struct	s_data
 {
     t_dlist     *stack_a;
     t_dlist     *stack_b;
-//	uint64_t	args;
+	uint64_t	args;
 };
 
 t_dlist	*dlistnew(int data);
@@ -51,8 +53,10 @@ int		ft_rrab(t_dlist **stack);
 int		ft_ss(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
-void	sorting_small(t_dlist **stack_a, t_dlist **stack_b);
-void	sorting(t_dlist **stack_a, t_dlist **stack_b);
+void	sorting(t_data *data);
+void	small_sort(t_data *data);
+void    sort_three(t_data *data);
+void    full_sort(t_data *data);
 void    init_data(t_data *data);
 void	error(char *errMsg);
 

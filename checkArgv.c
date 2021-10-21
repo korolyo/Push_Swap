@@ -37,18 +37,24 @@ void	multi_arg(int argc, char **argv, t_dlist **stack_a)
 
 int	dupl_check(int argc, char **argv)
 {
-	int  i;
-	int  j;
+	int i;
+	int j;
+    int count;
 
 	i = 0;
 	j = 0;
-	while (i < argc)
+    count = 0;
+	while (i < argc - 1)
 	{
 		j = i + 1;
-		while (j < argc - 1)
+        if (ft_atol(argv[i]) < ft_atol(argv[j]))
+            count++;
+		while (j < argc)
 		{
 			if (ft_atol(argv[i]) == ft_atol(argv[j]))
 				error("Error");
+            if (count == argc - 1)
+                exit(EXIT_SUCCESS);
 			j++;
 		}
 		i++;
@@ -83,6 +89,7 @@ void	checkArgv(int argc, char **argv, t_data *data)
     dupl_check(argc, argv);
 //    if (argc == 2)
 //        single_arg(argc, argv, &data);
+    data->args = (uint64_t)argc - 1;
     if (argc > 2)
         multi_arg(argc, argv, &data->stack_a);
     else

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   full_sort.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,10 +12,7 @@
 
 #include "push_swap.h"
 
-void	sorting(t_data *data)
+void	full_sort(t_data *data)
 {
-	if (data->args <= SMALL_STACK)
-        small_sort(data);
-    else
-        full_sort(data);
+	data->stack_a = NULL;
 }

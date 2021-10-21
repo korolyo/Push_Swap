@@ -6,6 +6,7 @@ SOURCES_LIST	= 	main.c\
 					operations_two.c\
 					checkArgv.c\
 					sorting_small.c\
+					full_sort.c\
 					sorting.c\
 					error.c\
 
