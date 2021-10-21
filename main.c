@@ -30,7 +30,7 @@ void	dlstadd_back(t_dlist **stack, t_dlist *newnode)
 	newnode->prev = final;
 }
 
-t_dlist	*dlistnew(int data)
+t_dlist	*dlistnew(int64_t data)
 {
 	t_dlist	*tmp;
 
@@ -58,7 +58,7 @@ void print(t_dlist *stack)
 	tmp = stack;
 	while (tmp)
 	{
-		printf("%llu<->", tmp->value);
+		printf("%lli<->", tmp->value);
 		tmp = tmp->next;									//DONT FORGET TO DELETE
 	}
 }

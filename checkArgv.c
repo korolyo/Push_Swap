@@ -41,7 +41,7 @@ int	dupl_check(int argc, char **argv)
 	int j;
     int count;
 
-	i = 0;
+	i = 1;
 	j = 0;
     count = 0;
 	while (i < argc - 1)
@@ -53,13 +53,13 @@ int	dupl_check(int argc, char **argv)
 		{
 			if (ft_atol(argv[i]) == ft_atol(argv[j]))
 				error("Error");
-            if (count == argc - 1)
+            if (count == argc - 2)
                 exit(EXIT_SUCCESS);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 void valid_check(int argc, char **argv)
@@ -75,6 +75,8 @@ void valid_check(int argc, char **argv)
         j = 0;
         while (j < (int)ft_strlen(argv[i]))
         {
+			if (argv[i][j] == '-')
+				j++;
             if (!ft_isdigit(argv[i][j]))
                 error("Error");
 			j++;

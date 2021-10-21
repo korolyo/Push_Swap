@@ -19,16 +19,16 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <limits.h>
-
-# include <stdio.h>
+//DELETE
+# include <stdio.h>									//DELETE
 
 typedef struct s_dlist t_dlist;
 typedef struct s_data t_data;
 
 struct	s_dlist
 {
-	uint64_t	value;
-	uint64_t	score;
+	int64_t	value;
+	int64_t	score;
 	t_dlist		*next;
 	t_dlist		*prev;
 };
@@ -40,7 +40,7 @@ struct	s_data
 	uint64_t	args;
 };
 
-t_dlist	*dlistnew(int data);
+t_dlist	*dlistnew(int64_t data);
 void	dlstadd_back(t_dlist **stack, t_dlist *newnode);
 void	checkArgv(int argc, char **argv, t_data *data);
 int		dupl_check(int argc, char **argv);
@@ -55,6 +55,7 @@ int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
 void	sorting(t_data *data);
 void	small_sort(t_data *data);
+void	get_score(t_data *data);
 void    sort_three(t_data *data);
 void    full_sort(t_data *data);
 void    init_data(t_data *data);
