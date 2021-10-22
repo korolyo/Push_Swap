@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int64_t ft_atol(const char *nptr)
+int64_t	ft_atol(const char *nptr)
 {
-	int64_t n;
-	int64_t sign;
+	int64_t	n;
+	int64_t	sign;
 
 	n = 0;
 	sign = 1;

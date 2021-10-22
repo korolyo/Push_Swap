@@ -22,27 +22,27 @@
 //DELETE
 # include <stdio.h>									//DELETE
 
-typedef struct s_dlist t_dlist;
-typedef struct s_data t_data;
+typedef struct s_dlist	t_dlist;
+typedef struct s_data	t_data;
 
-struct	s_dlist
+struct		s_dlist
 {
 	int64_t	value;
 	int64_t	score;
-	t_dlist		*next;
-	t_dlist		*prev;
+	t_dlist	*next;
+	t_dlist	*prev;
 };
 
 struct	s_data
 {
-    t_dlist     *stack_a;
-    t_dlist     *stack_b;
+	t_dlist		*stack_a;
+	t_dlist		*stack_b;
 	uint64_t	args;
 };
 
 t_dlist	*dlistnew(int64_t data);
 void	dlstadd_back(t_dlist **stack, t_dlist *newnode);
-void	checkArgv(int argc, char **argv, t_data *data);
+void	check_argv(int argc, char **argv, t_data *data);
 int		dupl_check(int argc, char **argv);
 void	valid_check(int argc, char **argv);
 void	multi_arg(int argc, char **argv, t_dlist **stack_a);
@@ -55,14 +55,14 @@ int		ft_rr(t_dlist **stack_a, t_dlist **stack_b);
 int		ft_rrr(t_dlist **stack_a, t_dlist **stack_b);
 void	sorting(t_data *data);
 void	small_sort(t_data *data);
-void	get_score(t_data *data);
-void    sort_three(t_data *data);
-void    full_sort(t_data *data);
-void    init_data(t_data *data);
+void	get_score(t_dlist *stack);
+void	sort_three(t_dlist **stack);
+void	sort_six(t_data *data);
+void	full_sort(t_data *data);
+void	init_data(t_data *data);
 void	error(char *errMsg);
 
 //dont forget to delete
 void	print(t_dlist *stack);
-
 
 #endif

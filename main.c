@@ -44,35 +44,34 @@ t_dlist	*dlistnew(int64_t data)
 	return ((t_dlist *)tmp);
 }
 
-void    init_data(t_data *data)
+void	init_data(t_data *data)
 {
-    data->stack_a = NULL;
-    data->stack_b = NULL;
+	data->stack_a = NULL;
+	data->stack_b = NULL;
 }
 
 //DONT FORGET TO DELETE
-void print(t_dlist *stack)
+void	print(t_dlist *stack)
 {
-	t_dlist *tmp;
+	t_dlist	*tmp;
 
 	tmp = stack;
 	while (tmp)
 	{
 		printf("%lli<->", tmp->value);
-		tmp = tmp->next;									//DONT FORGET TO DELETE
+		tmp = tmp->next;
 	}
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_data	data;
 
-    init_data(&data);
-    checkArgv(argc, argv, &data);
-    sorting(&data);
+	init_data(&data);
+	check_argv(argc, argv, &data);
+	sorting(&data);
 //    print_cmd();
 //    clear_data(&data);
 	print(data.stack_a);
-    exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }

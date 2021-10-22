@@ -27,13 +27,17 @@ int	ft_sab(t_dlist **stack)
 	return (0);
 }
 
+//something bad
 int	ft_pab(t_dlist **stack_a, t_dlist **stack_b)
 {
 	t_dlist	*first;
 	t_dlist	*second;
+	t_dlist	*tmp;
 
 	first = *stack_a;
 	second = *stack_b;
+	tmp = dlistnew(first->value);
+	dlstadd_back(&second, tmp);
 	if (!(second && second->next))
 		return (0);
 	*stack_b = second->next;
@@ -45,8 +49,8 @@ int	ft_pab(t_dlist **stack_a, t_dlist **stack_b)
 int	ft_rab(t_dlist **stack)
 {
 	t_dlist	*temp;
-	t_dlist *temp_last;
-	t_dlist *st;
+	t_dlist	*temp_last;
+	t_dlist	*st;
 
 	st = *stack;
 	if (!(st && st->next))
@@ -64,9 +68,9 @@ int	ft_rab(t_dlist **stack)
 
 int	ft_rrab(t_dlist **stack)
 {
-	t_dlist *temp;
-	t_dlist *temp_last;
-	t_dlist *st;
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
 
 	st = *stack;
 	if (!(st && st->next))
