@@ -48,6 +48,9 @@ void	init_data(t_data *data)
 {
 	data->stack_a = NULL;
 	data->stack_b = NULL;
+	data->size_a = 0;
+	data->size_b = 0;
+	data->args = 0;
 }
 
 //DONT FORGET TO DELETE
@@ -58,7 +61,8 @@ void	print(t_dlist *stack)
 	tmp = stack;
 	while (tmp)
 	{
-		printf("%lli<->", tmp->value);
+		printf("%lli <-> ", tmp->value);
+//		printf("score - %lli\n", tmp->score);
 		tmp = tmp->next;
 	}
 }
@@ -73,5 +77,8 @@ int	main(int argc, char **argv)
 //    print_cmd();
 //    clear_data(&data);
 	print(data.stack_a);
+	printf("/\n");
+	print(data.stack_b);
+	printf("/\n");
 	exit(EXIT_SUCCESS);
 }

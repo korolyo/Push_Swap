@@ -14,59 +14,48 @@
 //sort six - not working
 void	sort_six(t_data *data)
 {
-	uint64_t	argc;
-
-	argc = data->args;
-	while (data->args > 3)
+//	printf("%lld\n", data->stack_b->score);
+	print(data->stack_b);
+	printf("\n");
+	while (data->size_b != 0)
 	{
-		ft_pab(&data->stack_a, &data->stack_b);
-		data->args--;
-		print(data->stack_b);
-		printf("\n");
+		if ((data->stack_a->value > data->stack_b->value))
+		{
+			ft_pab(&data->stack_b, &data->stack_a);
+			data->size_b--;
+			data->size_a++;
+		}
+		else
+			ft_rab(&data->stack_a);
 	}
-//	get_score(data->stack_a);
-//	sort_three(&data->stack_a);
-//	get_score(data->stack_b);
-//	sort_three(&data->stack_b);
-//	while (data->args < argc)
-//	{
-//		if ((data->stack_a->value > data->stack_b->value) || \
-//			(data->stack_a->score == 1 && (data->stack_a->next->next->value
-//			< data->stack_b->value)))
-//		{
-//			ft_pab(&data->stack_b, &data->stack_a);
-//			argc--;
-//		}
-//		else
-//			ft_rab(&data->stack_a);
-//	}
 }
 
-void	get_score(t_dlist *stack)
+void	get_score(t_dlist **stack)
 {
 	int64_t	first;
 	int64_t	second;
 	int64_t	third;
 
-	first = stack->value;
-	second = stack->next->value;
-	third = stack->next->next->value;
+	first = (*stack)->value;
+	second = (*stack)->next->value;
+	third = (*stack)->next->next->value;
 	if (first < second && first < third)
-		stack->score = 1;
+		(*stack)->score = 1;
 	if ((first < second && first > third) || \
 		(first > second && first < third))
-		stack->score = 2;
+		(*stack)->score = 2;
 	if ((second > first && second < third) || \
 		(second < first && second > third))
-		stack->next->score = 2;
+		(*stack)->next->score = 2;
 	if (third > first && third > second)
-		stack->next->next->score = 3;
+		(*stack)->next->next->score = 3;
 }
 
 void	sort_three(t_dlist **stack)
 {
 	t_dlist	*tmp;
 
+	get_score(stack);
 	tmp = *stack;
 	if (tmp->score == 1)
 	{
@@ -88,15 +77,24 @@ void	sort_three(t_dlist **stack)
 
 void	small_sort(t_data *data)
 {
-	if (data->args == 2)
-		ft_rab(&data->stack_a);
-	else if (data->args == 3)
+	while (data->size_a > 3)
 	{
-		get_score(data->stack_a);
+		ft_pab(&data->stack_a, &data->stack_b);
+		data->size_a--;
+		data->size_b++;
+	}
+	if (data->size_a == 3)
 		sort_three(&data->stack_a);
-	}
-	else if (data->args > 3)
+	if (data->size_a == 2)
+		ft_rab(&data->stack_a);
+	if (data->size_b == 3)
 	{
-		sort_six(data);
+		if (is_sorted(data->stack_b) == 0)
+			sort_three(&data->stack_b);
 	}
+	else if (data->size_b == 2 && is_sorted(data->stack_b) == 0)
+		ft_rab(&data->stack_b);
+	if (data->size_b > 0)
+		sort_six(data);
+//	printf("ot\n");
 }

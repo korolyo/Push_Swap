@@ -93,7 +93,7 @@ void	check_argv(int argc, char **argv, t_data *data)
 	dupl_check(argc, argv);
 //    if (argc == 2)
 //        single_arg(argc, argv, &data);
-	data->args = (uint64_t)argc - 1;
+	data->size_a = (uint64_t)argc - 1;
 	if (argc > 2)
 		multi_arg(argc, argv, &data->stack_a);
 	else

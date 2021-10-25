@@ -28,21 +28,27 @@ int	ft_sab(t_dlist **stack)
 }
 
 //something bad
-int	ft_pab(t_dlist **stack_a, t_dlist **stack_b)
+int	ft_pab(t_dlist **stack_from, t_dlist **stack_to)
 {
-	t_dlist	*first;
-	t_dlist	*second;
 	t_dlist	*tmp;
 
-	first = *stack_a;
-	second = *stack_b;
-	tmp = dlistnew(first->value);
-	dlstadd_back(&second, tmp);
-	if (!(second && second->next))
+	tmp = NULL;
+	if (*stack_from == NULL || stack_from == NULL)
 		return (0);
-	*stack_b = second->next;
-	second->next = first;
-	*stack_a = second;
+	if ((*stack_from)->next != NULL)
+	{
+		tmp = (*stack_from)->next;
+		tmp->prev = NULL;
+	}
+	if (*stack_to == NULL)
+	{
+		(*stack_from)->next = NULL;
+		(*stack_from)->prev = NULL;
+	}
+	else
+		(*stack_from)->next = *stack_to;
+	*stack_to = *stack_from;
+	*stack_from = tmp;
 	return (0);
 }
 

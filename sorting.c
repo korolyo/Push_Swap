@@ -12,6 +12,20 @@
 
 #include "push_swap.h"
 
+int	is_sorted(t_dlist *stack)
+{
+	t_dlist *tmp;
+
+	tmp = stack;
+	while (tmp->next != NULL)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 void	sorting(t_data *data)
 {
 	if (data->args <= SMALL_STACK)
