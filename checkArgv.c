@@ -27,8 +27,6 @@ void	multi_arg(int argc, char **argv, t_dlist **stack_a)
 	while (i < argc)
 	{
 		val = ft_atol(argv[i]);
-		if (val < INT_MIN || val > INT_MAX)
-			error("Error");
 		newnode = dlistnew(val);
 		dlstadd_back(stack_a, newnode);
 		i++;
@@ -51,7 +49,8 @@ int	dupl_check(int argc, char **argv)
 			count++;
 		while (j < argc)
 		{
-			if (ft_atol(argv[i]) == ft_atol(argv[j]))
+			if (ft_atol(argv[i]) == ft_atol(argv[j])
+				|| (ft_atol(argv[i]) < INT_MIN	|| ft_atol(argv[i]) > INT_MAX))
 				error("Error");
 			if (count == argc - 2)
 				exit(EXIT_SUCCESS);
@@ -69,7 +68,7 @@ void	valid_check(int argc, char **argv)
 
 	i = 1;
 	if (argc < 2)
-		error("Error");
+		exit(EXIT_SUCCESS);
 	while (i < argc)
 	{
 		j = 0;

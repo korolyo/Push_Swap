@@ -61,6 +61,11 @@ void	get_score(t_dlist **stack);
 void	sort_three(t_dlist **stack);
 void	sort_six(t_data *data);
 void	full_sort(t_data *data);
+void	find_min_max(t_data *data, int64_t *min,
+			int64_t *med, int64_t *max);
+void	push_to_st_b(t_data *data, int64_t *min, int64_t *med, int64_t *max);
+void	give_scores(t_data *data);
+void	final_rotations(t_data *data);
 void	init_data(t_data *data);
 void	error(char *errMsg);
 int		is_sorted(t_dlist *stack);

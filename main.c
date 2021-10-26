@@ -76,8 +76,8 @@ int	main(int argc, char **argv)
 //    print_cmd();
 //    clear_data(&data);
 	print(data.stack_a);
-	printf("/\n");
+	printf("\n");
 	print(data.stack_b);
-	printf("/\n");
+	printf("\n");
 	exit(EXIT_SUCCESS);
 }
