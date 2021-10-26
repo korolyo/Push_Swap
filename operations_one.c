@@ -27,7 +27,6 @@ int	ft_sab(t_dlist **stack)
 	return (0);
 }
 
-//something bad
 int	ft_pab(t_dlist **stack_from, t_dlist **stack_to)
 {
 	t_dlist	*tmp;

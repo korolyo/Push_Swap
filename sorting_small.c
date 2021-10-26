@@ -11,23 +11,31 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-//sort six - not working
+
 void	sort_six(t_data *data)
 {
-//	printf("%lld\n", data->stack_b->score);
-	print(data->stack_b);
-	printf("\n");
 	while (data->size_b != 0)
 	{
-		if ((data->stack_a->value > data->stack_b->value))
+		if (data->stack_a->value > data->stack_b->value)
 		{
 			ft_pab(&data->stack_b, &data->stack_a);
 			data->size_b--;
 			data->size_a++;
 		}
-		else
+		else if (data->stack_a->value < data->stack_b->value
+			&& ((data->stack_a->next->next->value > data->stack_b->value)
+				|| (data->stack_a->next->value > data->stack_b->value)))
 			ft_rab(&data->stack_a);
+		else if (data->stack_a->next->next->value < data->stack_b->value)
+		{
+			ft_pab(&data->stack_b, &data->stack_a);
+			data->size_b--;
+			data->size_a++;
+			ft_rab(&data->stack_a);
+		}
 	}
+	while (!(is_sorted(data->stack_a)))
+		ft_rab(&data->stack_a);
 }
 
 void	get_score(t_dlist **stack)
@@ -83,7 +91,7 @@ void	small_sort(t_data *data)
 		data->size_a--;
 		data->size_b++;
 	}
-	if (data->size_a == 3)
+	if (data->size_a == 3 && is_sorted(data->stack_a) == 0)
 		sort_three(&data->stack_a);
 	if (data->size_a == 2)
 		ft_rab(&data->stack_a);
@@ -96,5 +104,4 @@ void	small_sort(t_data *data)
 		ft_rab(&data->stack_b);
 	if (data->size_b > 0)
 		sort_six(data);
-//	printf("ot\n");
 }

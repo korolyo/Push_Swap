@@ -62,7 +62,6 @@ void	print(t_dlist *stack)
 	while (tmp)
 	{
 		printf("%lli <-> ", tmp->value);
-//		printf("score - %lli\n", tmp->score);
 		tmp = tmp->next;
 	}
 }

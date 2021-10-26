@@ -31,8 +31,6 @@ void	multi_arg(int argc, char **argv, t_dlist **stack_a)
 			error("Error");
 		newnode = dlistnew(val);
 		dlstadd_back(stack_a, newnode);
-//		print(*stack_a);
-//		printf("\n");
 		i++;
 	}
 }

@@ -38,8 +38,8 @@ struct	s_data
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
 	uint64_t	args;
-	uint32_t 	size_a;
-	uint32_t 	size_b;
+	uint32_t	size_a;
+	uint32_t	size_b;
 };
 
 t_dlist	*dlistnew(int64_t data);
