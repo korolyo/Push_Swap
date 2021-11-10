@@ -60,16 +60,19 @@ void	get_score(t_dlist **stack);
 void	sort_three(t_dlist **stack);
 void	sort_six(t_data *data);
 void	full_sort(t_data *data);
-int64_t *presorted_array(t_data *data, int64_t *min, int64_t *max);
-int64_t *bubble_sort(int64_t *arr, int64_t size_a);
+int64_t	*presorted_array(t_data *data, int64_t *min, int64_t *max);
+int64_t	*bubble_sort(int64_t *arr, int64_t size_a);
 void	find_median(int64_t *arr, int64_t *med, int64_t min, int64_t max);
 void	push_to_b(t_data *data, int64_t min, int64_t med, int64_t max);
-void	give_scores(t_data *data);
-void	stack_rotations(t_data *data, int64_t rotate_a,  int64_t rotate_b);
+void	score_to_elem(t_data *data, t_dlist *elem);
+void	stack_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b);
+void	paired_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b);
+void	lone_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b);
+void	final_rotations(t_dlist *stack_a);
 void	init_data(t_data *data);
 void	error(char *errMsg);
 int		is_sorted(t_dlist *stack);
-int64_t my_abs(int64_t value);
+int64_t	my_abs(int64_t value);
 //dont forget to delete
 void	print(t_dlist *stack);
 

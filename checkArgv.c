@@ -50,7 +50,7 @@ int	dupl_check(int argc, char **argv)
 		while (j < argc)
 		{
 			if (ft_atol(argv[i]) == ft_atol(argv[j])
-				|| (ft_atol(argv[i]) < INT_MIN	|| ft_atol(argv[i]) > INT_MAX))
+				|| (ft_atol(argv[i]) < INT_MIN || ft_atol(argv[i]) > INT_MAX))
 				error("Error");
 			if (count == argc - 2)
 				exit(EXIT_SUCCESS);

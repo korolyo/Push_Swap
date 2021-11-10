@@ -9,6 +9,9 @@ SOURCES_LIST	= 	main.c\
 					full_sort.c\
 					sorting.c\
 					error.c\
+					math_util.c\
+					rotations.c\
+					presorted_array.c\
 
 CC		= gcc
 CFLAGS	=	-Werror -Wall -Wextra
