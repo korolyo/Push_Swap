@@ -28,7 +28,7 @@ int	is_sorted(t_dlist *stack)
 
 void	sorting(t_data *data)
 {
-	if (data->args <= SMALL_STACK)
+	if (data->size_a <= SMALL_STACK)
 		small_sort(data);
 	else
 		full_sort(data);

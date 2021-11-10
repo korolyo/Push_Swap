@@ -50,7 +50,6 @@ void	init_data(t_data *data)
 	data->stack_b = NULL;
 	data->size_a = 0;
 	data->size_b = 0;
-	data->args = 0;
 }
 
 //DONT FORGET TO DELETE
