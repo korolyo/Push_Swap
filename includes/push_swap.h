@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <limits.h>
 //DELETE
-# include <stdio.h>									//DELETE
+# include <stdio.h>
 
 typedef struct s_dlist	t_dlist;
 typedef struct s_data	t_data;
