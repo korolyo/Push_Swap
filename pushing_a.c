@@ -24,28 +24,21 @@ void	score_to_elem(t_data *data, t_dlist *elem)
 	elem->score = my_abs(rotate_a) + my_abs(rotate_b);
 }
 
-void	count_rotations_for_every_element(t_data *data, int64_t *rotate_a,
-										  int64_t *rotate_b)
+void	find_b_score(t_data *data, t_dlist *curr, int64_t *rotate_a,
+			int64_t *rotate_b)
 {
 	t_dlist	*tmp_a;
 	t_dlist *tmp_b;
-	int64_t	count_a;
-	int64_t	count_b;
 
-	count_a = 0;
-	count_b = 0;
 	tmp_a = data->stack_a;
 	tmp_b = data->stack_b;
-	while (count_b < data->size_a)
+	while (tmp_b)
 	{
-		tmp_a = data->stack_a;
-		while (tmp_b->value > tmp_a->value)
-		{
-			*rotate_a++;
-			tmp_a = tmp_a->next;
-		}
-		if ()
-		count_b++;
+		if (curr->value == tmp_a->value)
+			break ;
+		(*rotate_b)++;
+		tmp_b = tmp->next;
+
 	}
 }
 
@@ -54,15 +47,20 @@ void	push_to_a(t_data *data)
 	int64_t	count;
 	int64_t	rotate_a;
 	int64_t	rotate_b;
-	t_dlist	*b_elem;
+	t_dlist	*curr_elem;
 
+	rotate_a = 0;
+	rotate_b = 0;
+	curr_elem = data->stack_b;
 	while (count < data->size_b)
 	{
-		count_rotations_for_every_element(data, &rotate_a, &rotate_b);
+		count_rotations_for_every_element(data, &curr_elem, &rotate_a,
+										  &rotate_b);
+		curr_elem = curr_elem->next;
 		count++;
 	}
-	find_min_score;
-	rotate stack_a;
+	find_bmin_score;
+	rotate stacks;
 	ft_pab(&min_score_elem, &data->stack_a);
 //	b_elem = data->stack_b;
 //	count = 0;
