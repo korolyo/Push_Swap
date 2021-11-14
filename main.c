@@ -72,11 +72,19 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	check_argv(argc, argv, &data);
 	sorting(&data);
-//    print_cmd();
-//    clear_data(&data);
+//	while (data->stack_b != NULL)
+//	{
+//		printf("check\n");
+	printf("stack_a -> ");
 	print(data.stack_a);
 	printf("\n");
+	printf("stack_b -> ");
 	print(data.stack_b);
 	printf("\n");
+//		printf("stack_b = \n");
+//		print(data.stack_b);
+//		printf("\n");
+//		data.stack_a = data.stack_a->next;
+//	}
 	exit(EXIT_SUCCESS);
 }

@@ -13,6 +13,7 @@ SOURCES_LIST	= 	main.c\
 					rotations.c\
 					presorted_array.c\
 					pushing_a.c\
+					operations_three.c\
 
 CC		= gcc
 CFLAGS	=	-Werror -Wall -Wextra

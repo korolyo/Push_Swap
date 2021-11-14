@@ -17,8 +17,8 @@ void	rotate_stacks(t_data *data, t_dlist *bmin)
 	t_dlist	*tmp_a;
 	t_dlist *tmp_b;
 	int64_t	count;
-	int64_t	*rotate_a;
-	int64_t	*rotate_b;
+	int64_t	rotate_a;
+	int64_t	rotate_b;
 
 	tmp_b = data->stack_b;
 	tmp_a = data->stack_a;
@@ -33,20 +33,20 @@ void	rotate_stacks(t_data *data, t_dlist *bmin)
 		count++;
 	}
 	if (count <= data->size_b - count)
-		*rotate_b = count;
+		rotate_b = count;
 	else if (count > data->size_b - count)
-		*rotate_b = count - data->size_b;
+		rotate_b = count - data->size_b;
 	count = 0;
 	while (bmin->value > tmp_a->value)
 	{
-		if (count <= data->size_a - count)
-			*rotate_a = count;
-		else if (count > data->size_a - count)
-			*rotate_a = count - data->size_a;
-		tmp_a = tmp_a->next;
 		count++;
+		if (count <= data->size_a - count)
+			rotate_a = count;
+		else if (count > data->size_a - count)
+			rotate_a = count - data->size_a;
+		tmp_a = tmp_a->next;
 	}
-	stack_rotations(data, rotate_a, rotate_b);
+	stack_rotations(data, &rotate_a, &rotate_b);
 }
 
 t_dlist	*find_bmin_score(t_data *data)
@@ -116,7 +116,6 @@ void	push_to_a(t_data *data)
 	curr_elem = data->stack_b;
 	while (count < data->size_b)
 	{
-		printf("check11");
 		find_b_score(data, curr_elem, &rotate_a);
 		curr_elem = curr_elem->next;
 		count++;
@@ -124,8 +123,6 @@ void	push_to_a(t_data *data)
 		rotate_b = 0;
 	}
 	bmin = find_bmin_score(data);
-//	rotate_stacks(data, bmin);
-	ft_pab(&data->stack_b, &data->stack_a);
-//	data->size_b--;
-//	data->size_a++;
+	rotate_stacks(data, bmin);
+	pa(&data->stack_b, &data->stack_a);
 }

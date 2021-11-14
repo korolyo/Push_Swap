@@ -18,24 +18,24 @@ void	sort_six(t_data *data)
 	{
 		if (data->stack_a->value > data->stack_b->value)
 		{
-			ft_pab(&data->stack_b, &data->stack_a);
+			pb(&data->stack_b, &data->stack_a);
 			data->size_b--;
 			data->size_a++;
 		}
 		else if (data->stack_a->value < data->stack_b->value
 			&& ((data->stack_a->next->next->value > data->stack_b->value)
 				|| (data->stack_a->next->value > data->stack_b->value)))
-			ft_rab(&data->stack_a);
+			ra(&data->stack_a);
 		else if (data->stack_a->next->next->value < data->stack_b->value)
 		{
-			ft_pab(&data->stack_b, &data->stack_a);
+			pb(&data->stack_b, &data->stack_a);
 			data->size_b--;
 			data->size_a++;
-			ft_rab(&data->stack_a);
+			ra(&data->stack_a);
 		}
 	}
 	while (!(is_sorted(data->stack_a)))
-		ft_rab(&data->stack_a);
+		ra(&data->stack_a);
 }
 
 void	get_score(t_dlist **stack)
@@ -59,7 +59,7 @@ void	get_score(t_dlist **stack)
 		(*stack)->next->next->score = 3;
 }
 
-void	sort_three(t_dlist **stack)
+void	sort_three_a(t_dlist **stack)
 {
 	t_dlist	*tmp;
 
@@ -67,41 +67,65 @@ void	sort_three(t_dlist **stack)
 	tmp = *stack;
 	if (tmp->score == 1)
 	{
-		ft_rrab(stack);
-		ft_sab(stack);
+		rra(stack);
+		sa(stack);
 	}
 	else if (tmp->next->score == 2)
 	{
-		ft_rab(stack);
-		ft_sab(stack);
+		ra(stack);
+		sa(stack);
 	}
 	else if (tmp->next->next->score == 3)
-		ft_sab(stack);
+		sa(stack);
 	else if (tmp->score == 2)
-		ft_rrab(stack);
+		rra(stack);
 	else
-		ft_rab(stack);
+		ra(stack);
+}
+
+void	sort_three_b(t_dlist **stack)
+{
+	t_dlist	*tmp;
+
+	get_score(stack);
+	tmp = *stack;
+	if (tmp->score == 1)
+	{
+		rrb(stack);
+		sb(stack);
+	}
+	else if (tmp->next->score == 2)
+	{
+		rb(stack);
+		sb(stack);
+	}
+	else if (tmp->next->next->score == 3)
+		sb(stack);
+	else if (tmp->score == 2)
+		rrb(stack);
+	else
+		rb(stack);
 }
 
 void	small_sort(t_data *data)
 {
 	while (data->size_a > 3)
 	{
-		ft_pab(&data->stack_a, &data->stack_b);
+		pb(&data->stack_a, &data->stack_b);
 		data->size_a--;
 		data->size_b++;
 	}
 	if (data->size_a == 3 && is_sorted(data->stack_a) == 0)
-		sort_three(&data->stack_a);
+		sort_three_a(&data->stack_a);
 	if (data->size_a == 2)
-		ft_rab(&data->stack_a);
+		ra(&data->stack_a);
 	if (data->size_b == 3)
 	{
 		if (is_sorted(data->stack_b) == 0)
-			sort_three(&data->stack_b);
+			sort_three_b(&data->stack_b);
 	}
 	else if (data->size_b == 2 && is_sorted(data->stack_b) == 0)
-		ft_rab(&data->stack_b);
+		rb(&data->stack_b);
 	if (data->size_b > 0)
 		sort_six(data);
 }

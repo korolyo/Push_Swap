@@ -12,23 +12,88 @@
 
 #include "push_swap.h"
 
-int	ft_ss(t_dlist **stack_a, t_dlist **stack_b)
+int	ra(t_dlist **stack)
 {
-	ft_sab(stack_a);
-	ft_sab(stack_b);
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
+
+	st = *stack;
+	if (!(st && st->next))
+		return (0);
+	temp = *stack;
+	st = st->next;
+	temp_last = st;
+	while (temp_last->next != NULL)
+		temp_last = temp_last->next;
+	temp_last->next = temp;
+	temp->next = NULL;
+	*stack = st;
+	ft_putstr_fd("ra\n", 1);
 	return (0);
 }
 
-int	ft_rr(t_dlist **stack_a, t_dlist **stack_b)
+int	rb(t_dlist **stack)
 {
-	ft_rab(stack_a);
-	ft_rab(stack_b);
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
+
+	st = *stack;
+	if (!(st && st->next))
+		return (0);
+	temp = *stack;
+	st = st->next;
+	temp_last = st;
+	while (temp_last->next != NULL)
+		temp_last = temp_last->next;
+	temp_last->next = temp;
+	temp->next = NULL;
+	*stack = st;
+	ft_putstr_fd("rb\n", 1);
 	return (0);
 }
 
-int	ft_rrr(t_dlist **stack_a, t_dlist **stack_b)
+int	rra(t_dlist **stack)
 {
-	ft_rrab(stack_a);
-	ft_rrab(stack_b);
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
+
+	st = *stack;
+	if (!(st && st->next))
+		return (0);
+	temp_last = st;
+	while (temp_last->next)
+	{
+		temp = temp_last;
+		temp_last = temp_last->next;
+	}
+	temp_last->next = st;
+	temp->next = NULL;
+	*stack = temp_last;
+	ft_putstr_fd("rra\n", 1);
+	return (0);
+}
+
+int	rrb(t_dlist **stack)
+{
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
+
+	st = *stack;
+	if (!(st && st->next))
+		return (0);
+	temp_last = st;
+	while (temp_last->next)
+	{
+		temp = temp_last;
+		temp_last = temp_last->next;
+	}
+	temp_last->next = st;
+	temp->next = NULL;
+	*stack = temp_last;
+	ft_putstr_fd("rrb\n", 1);
 	return (0);
 }

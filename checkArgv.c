@@ -12,11 +12,6 @@
 
 #include "push_swap.h"
 
-//char	*split_args(char **number, char **argv, int i, int k)
-//{
-//	number = *ft_split(argv[i], ' ');
-//}
-
 void	multi_arg(int argc, char **argv, t_dlist **stack_a)
 {
 	int		i;
@@ -88,8 +83,6 @@ void	check_argv(int argc, char **argv, t_data *data)
 {
 	valid_check(argc, argv);
 	dupl_check(argc, argv);
-//    if (argc == 2)
-//        single_arg(argc, argv, &data);
 	data->size_a = (uint64_t)argc - 1;
 	if (argc > 2)
 		multi_arg(argc, argv, &data->stack_a);

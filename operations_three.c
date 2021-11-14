@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sorting.c                                          :+:      :+:    :+:   */
+/*   operations_three.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/09 12:00:30 by acollin           #+#    #+#             */
-/*   Updated: 2021/10/09 12:00:40 by acollin          ###   ########.fr       */
+/*   Created: 2021/10/09 12:00:49 by acollin           #+#    #+#             */
+/*   Updated: 2021/10/09 12:00:53 by acollin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_dlist *stack)
+int	ss(t_dlist **stack_a, t_dlist **stack_b)
 {
-	while (stack->next != NULL)
-	{
-		if (tmp->value > tmp->next->value)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
+	sa(stack_a);
+	sb(stack_b);
+	ft_putstr_fd("ss\n", 1);
+	return (0);
 }
 
-void	sorting(t_data *data)
+int	rr(t_dlist **stack_a, t_dlist **stack_b)
 {
-	if (data->size_a <= SMALL_STACK)
-		small_sort(data);
-	else
-		full_sort(data);
+	ra(stack_a);
+	rb(stack_b);
+	ft_putstr_fd("rr\n", 1);
+	return (0);
+}
+
+int	rrr(t_dlist **stack_a, t_dlist **stack_b)
+{
+	rra(stack_a);
+	rrb(stack_b);
+	ft_putstr_fd("rrr\n", 1);
+	return (0);
 }
