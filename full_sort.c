@@ -48,19 +48,27 @@ void	full_sort(t_data *data)
 	int64_t	max;
 	int64_t	*arr;
 
-	arr = presorted_array(data, &min, &max);
-	med = arr[(max - min)/ 2];
+	arr = presort_arr(data, &min, &max, &med);
 	while (data->stack_a->value != med)
 		ra(&data->stack_a);
+	printf("min - %lli \n", min);
+	printf("med - %lli \n", med);
+	printf("max - %lli \n", max);
 	push_to_b(data, min, med, max);
 	if (data->stack_a->value == max)
 		ra(&data->stack_a);
-	while (data->stack_b != NULL)
-		push_to_a(data);
+	//Delete
+	printf("min - %lli \n", min);
+	printf("med - %lli \n", med);
+	printf("max - %lli \n", max);
 	printf("stack_a -> ");
 	print(data->stack_a);
 	printf("\n");
-//	ra(&data->stack_a);
-//	ra(&data->stack_a);
-	final_rotations(data->stack_a);
+	printf("stack_b -> ");
+	print(data->stack_b);
+	printf("\n");
+	// =======================
+	while (data->stack_b != NULL)
+		push_to_a(data);
+//	final_rotations(&data->stack_a);
 }

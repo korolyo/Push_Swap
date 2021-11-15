@@ -58,15 +58,19 @@ void	stack_rotations(t_data *data, int64_t *rotate_a,  int64_t *rotate_b)
 	lone_rotations(data, rotate_a, rotate_b);
 }
 
-void	final_rotations(t_dlist *stack_a)
+void	final_rotations(t_dlist **stack_a)
 {
 //	t_dlist	*tmp_head;
 //
 //	tmp_head = stack_a;
 //	while (tmp_head != NULL)
 //		tmp_head = tmp_head->next;
-	while (is_sorted(stack_a) == 0)
+//	printf("stack_a -> ");
+//	print(*stack_a);
+//	printf("%lld\n", (*stack_a)->value);
+//	printf("\n");
+	while ((is_sorted(*stack_a)) == 0)
 	{
-		ra(&stack_a);
+		ra(stack_a);
 	}
 }

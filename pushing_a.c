@@ -72,6 +72,7 @@ void	find_b_score(t_data *data, t_dlist *curr, int64_t *rotate_a)
 {
 	t_dlist	*tmp_a;
 	t_dlist *tmp_b;
+	t_dlist	*last_a;
 	int64_t	count;
 
 	count = 0;
@@ -87,6 +88,21 @@ void	find_b_score(t_data *data, t_dlist *curr, int64_t *rotate_a)
 		count++;
 	}
 	count = 0;
+	tmp_a = data->stack_a;
+	printf("last_a = %lld\n", tmp_a->value);
+	if (curr->value < tmp_a->value)
+	{
+		last_a = tmp_a;
+		while(last_a)
+			last_a = last_a->next;
+		printf("last_a = %lld\n", last_a->value);
+		while (curr->value < last_a->value)
+		{
+			(*rotate_a)--;
+			printf("rotate_a = %lld\n", *rotate_a);
+			last_a = last_a->prev;
+		}
+	}
 	while (count < data->size_b)
 	{
 		if (curr->value == data->stack_b->value)
@@ -122,6 +138,14 @@ void	push_to_a(t_data *data)
 		rotate_a = 0;
 		rotate_b = 0;
 	}
+	//Delete
+	printf("stack_a -> ");
+	print(data->stack_a);
+	printf("\n");
+	printf("stack_b -> ");
+	print(data->stack_b);
+	printf("\n");
+	// =======================
 	bmin = find_bmin_score(data);
 	rotate_stacks(data, bmin);
 	pa(&data->stack_b, &data->stack_a);
