@@ -38,16 +38,16 @@ void	lone_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b)
 	while (*rotate_b > 0)
 	{
 		rb(&data->stack_b);
-		(*rotate_a)--;
+		(*rotate_b)--;
 	}
 	while (*rotate_a < 0)
 	{
-		ra(&data->stack_a);
+		rra(&data->stack_a);
 		(*rotate_a)++;
 	}
 	while (*rotate_b < 0)
 	{
-		rb(&data->stack_b);
+		rrb(&data->stack_b);
 		(*rotate_b)++;
 	}
 }
@@ -60,17 +60,6 @@ void	stack_rotations(t_data *data, int64_t *rotate_a,  int64_t *rotate_b)
 
 void	final_rotations(t_dlist **stack_a)
 {
-//	t_dlist	*tmp_head;
-//
-//	tmp_head = stack_a;
-//	while (tmp_head != NULL)
-//		tmp_head = tmp_head->next;
-//	printf("stack_a -> ");
-//	print(*stack_a);
-//	printf("%lld\n", (*stack_a)->value);
-//	printf("\n");
 	while ((is_sorted(*stack_a)) == 0)
-	{
 		ra(stack_a);
-	}
 }

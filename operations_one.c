@@ -44,7 +44,7 @@ int	sb(t_dlist **stack)
 	return (0);
 }
 
-int	pa(t_dlist **stack_from, t_dlist **stack_to)
+int	pa(t_data *data, t_dlist **stack_from, t_dlist **stack_to)
 {
 	t_dlist	*tmp;
 
@@ -65,11 +65,13 @@ int	pa(t_dlist **stack_from, t_dlist **stack_to)
 		(*stack_from)->next = *stack_to;
 	*stack_to = *stack_from;
 	*stack_from = tmp;
+	(data->size_b)--;
+	(data->size_a)++;
 	ft_putstr_fd("pa\n", 1);
 	return (0);
 }
 
-int	pb(t_dlist **stack_from, t_dlist **stack_to)
+int	pb(t_data *data, t_dlist **stack_from, t_dlist **stack_to)
 {
 	t_dlist	*tmp;
 
@@ -90,6 +92,8 @@ int	pb(t_dlist **stack_from, t_dlist **stack_to)
 		(*stack_from)->next = *stack_to;
 	*stack_to = *stack_from;
 	*stack_from = tmp;
+	(data->size_a)--;
+	(data->size_b)++;
 	ft_putstr_fd("pb\n", 1);
 	return (0);
 }

@@ -24,10 +24,10 @@ void	push_to_b(t_data *data, int64_t min, int64_t med, int64_t max)
 		if (data->stack_a->value != min && data->stack_a->value != max)
 		{
 			if (data->stack_a->value < med)
-				pb(&data->stack_a, &data->stack_b);
+				pb(data, &data->stack_a, &data->stack_b);
 			else
 			{
-				pb(&data->stack_a, &data->stack_b);
+				pb(data, &data->stack_a, &data->stack_b);
 				rb(&data->stack_b);
 			}
 		}
@@ -51,24 +51,19 @@ void	full_sort(t_data *data)
 	arr = presort_arr(data, &min, &max, &med);
 	while (data->stack_a->value != med)
 		ra(&data->stack_a);
-	printf("min - %lli \n", min);
-	printf("med - %lli \n", med);
-	printf("max - %lli \n", max);
 	push_to_b(data, min, med, max);
 	if (data->stack_a->value == max)
 		ra(&data->stack_a);
+	printf("1\n");
+	while (data->stack_b != NULL)
+		push_to_a(data);
 	//Delete
-	printf("min - %lli \n", min);
-	printf("med - %lli \n", med);
-	printf("max - %lli \n", max);
 	printf("stack_a -> ");
 	print(data->stack_a);
 	printf("\n");
 	printf("stack_b -> ");
 	print(data->stack_b);
-    printf("1\n");
+	printf("\n");
 	// =======================
-	while (data->stack_b != NULL)
-		push_to_a(data);
-	final_rotations(&data->stack_a);
+//	final_rotations(&data->stack_a);
 }

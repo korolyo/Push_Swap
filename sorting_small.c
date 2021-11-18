@@ -17,20 +17,14 @@ void	sort_six(t_data *data)
 	while (data->size_b != 0)
 	{
 		if (data->stack_a->value > data->stack_b->value)
-		{
-			pb(&data->stack_b, &data->stack_a);
-			data->size_b--;
-			data->size_a++;
-		}
+			pa(data, &data->stack_b, &data->stack_a);
 		else if (data->stack_a->value < data->stack_b->value
 			&& ((data->stack_a->next->next->value > data->stack_b->value)
 				|| (data->stack_a->next->value > data->stack_b->value)))
 			ra(&data->stack_a);
 		else if (data->stack_a->next->next->value < data->stack_b->value)
 		{
-			pb(&data->stack_b, &data->stack_a);
-			data->size_b--;
-			data->size_a++;
+			pa(data, &data->stack_b, &data->stack_a);
 			ra(&data->stack_a);
 		}
 	}
@@ -110,11 +104,7 @@ void	sort_three_b(t_dlist **stack)
 void	small_sort(t_data *data)
 {
 	while (data->size_a > 3)
-	{
-		pb(&data->stack_a, &data->stack_b);
-		data->size_a--;
-		data->size_b++;
-	}
+		pb(data, &data->stack_a, &data->stack_b);
 	if (data->size_a == 3 && is_sorted(data->stack_a) == 0)
 		sort_three_a(&data->stack_a);
 	if (data->size_a == 2)
