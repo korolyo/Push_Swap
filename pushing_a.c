@@ -12,131 +12,106 @@
 
 #include "push_swap.h"
 
-void	rotate_stacks(t_data *data, t_dlist *bmin)
+void	rotate_stacks(t_data *data, t_dlist *bmin, int64_t position)
 {
-	t_dlist	*tmp_a;
-	t_dlist *tmp_b;
-	int64_t	count;
 	int64_t	rotate_a;
 	int64_t	rotate_b;
 
-	tmp_b = data->stack_b;
-	tmp_a = data->stack_a;
-	count = 0;
-	rotate_a = 0;
-	rotate_b = 0;
-	while (count < data->size_b)
-	{
-		if (bmin->score == tmp_b->score)
-			break ;
-		tmp_b = tmp_b->next;
-		count++;
-	}
-	if (count <= data->size_b - count)
-		rotate_b = count;
-	else if (count > data->size_b - count)
-		rotate_b = count - data->size_b;
-	count = 0;
-	while (bmin->value > tmp_a->value)
-	{
-		count++;
-		if (count <= data->size_a - count)
-			rotate_a = count;
-		else if (count > data->size_a - count)
-			rotate_a = count - data->size_a;
-		tmp_a = tmp_a->next;
-	}
-	stack_rotations(data, &rotate_a, &rotate_b);
+    printf("2\n");
+    rotate_a = a_rotations(data, bmin->value);
+    printf("3\n");
+    if (position < data->size_b - position)
+        rotate_b = position;
+    else
+        rotate_b = position - data->size_b;
+    printf("4\n");
+    stack_rotations(data, &rotate_a, &rotate_b);
 }
 
-t_dlist	*find_bmin_score(t_data *data)
+t_dlist	*find_bmin_score(t_data *data, int64_t *position)
 {
 	t_dlist *tmp_b;
 	t_dlist *bmin;
-	int64_t count;
+    int64_t count;
 
-	count = 0;
-	tmp_b = data->stack_b;
+	*position = 0;
+    count = 1;
+	tmp_b = data->stack_b->next;
 	bmin = data->stack_b;
 	while (count < data->size_b)
 	{
 		if (tmp_b->score < tmp_b->next->score)
-			bmin = tmp_b;
+        {
+            *position = count;
+            bmin = tmp_b;
+        }
 		tmp_b = tmp_b->next;
 		count++;
 	}
 	return (bmin);
 }
 
-void	find_b_score(t_data *data, t_dlist *curr, int64_t *rotate_a)
+int64_t a_rotations(t_data *data, int64_t value)
 {
-	t_dlist	*tmp_a;
-	t_dlist *tmp_b;
-	t_dlist	*last_a;
-	int64_t	count;
+    t_dlist *tmp;
+    t_dlist *last;
+    int64_t count;
+
+    count = 0;
+    tmp = data->stack_b;
+    last = data->stack_b;
+    while (last)
+        last = last->next;
+    printf("2.1\n");
+    while (value > tmp->value || last->value > value)
+    {
+        tmp = tmp->next;
+        last = last->prev;
+        count++;
+    }
+    printf("2.2\n");
+    if (count < data->size_a - count - 1)
+        return (count);
+    return (count - data->size_a);
+}
+
+void	find_b_score(t_data *data, t_dlist *curr, int64_t count)
+{
+    int64_t rotate_a;
+    int64_t rotate_b;
 
 	count = 0;
-	tmp_a = data->stack_a;
-	tmp_b = data->stack_b;
-	while (curr->value > tmp_a->value)
-	{
-		if (count <= data->size_a - count)
-			*rotate_a = count;
-		else if (count > data->size_a - count)
-			*rotate_a = count - data->size_a;
-		tmp_a = tmp_a->next;
-		count++;
-	}
-	count = 0;
-	tmp_a = data->stack_a;
-	printf("last_a = %lld\n", tmp_a->value);
-	if (curr->value < tmp_a->value)
-	{
-		last_a = tmp_a;
-		while(last_a)
-			last_a = last_a->next;
-		printf("last_a = %lld\n", last_a->value);
-		while (curr->value < last_a->value)
-		{
-			(*rotate_a)--;
-			printf("rotate_a = %lld\n", *rotate_a);
-			last_a = last_a->prev;
-		}
-	}
-	while (count < data->size_b)
-	{
-		if (curr->value == data->stack_b->value)
-		{
-			if (count <= data->size_b - count)
-				data->stack_b->score = count + my_abs(*rotate_a);
-			else if (count > data->size_b - count)
-				data->stack_b->score = count - data->size_b + my_abs(*rotate_a);
-		}
-		count++;
-		data->stack_b = data->stack_b->next;
-	}
-	data->stack_b = tmp_b;
+    rotate_a = a_rotations(data, curr->value);
+    if (count < data->size_b - count)
+        rotate_b = count;
+    else
+        rotate_b = count - data->size_b;
+    if ((rotate_a > 0 && rotate_b > 0)
+        || (rotate_a < 0 && rotate_b < 0))
+    {
+        if (my_abs(rotate_a) > my_abs(rotate_b))
+            curr->score = my_abs(rotate_a);
+        else
+            curr->score = my_abs(rotate_b);
+    }
+    else
+        curr->score = my_abs(rotate_a) + my_abs(rotate_b);
 }
 
 void	push_to_a(t_data *data)
 {
 	int64_t	count;
-	int64_t	rotate_a;
-	int64_t	rotate_b;
+    int64_t position;
 	t_dlist	*curr_elem;
 	t_dlist *bmin;
 
-	rotate_a = 0;
-	rotate_b = 0;
 	count = 0;
 	curr_elem = data->stack_b;
 	while (count < data->size_b)
 	{
-		find_b_score(data, curr_elem, &rotate_a);
+		find_b_score(data, curr_elem, count);
 		curr_elem = curr_elem->next;
 		count++;
-		rotate_a = 0;
-		rotate_b = 0;
 	}
 	//Delete
 	printf("stack_a -> ");
@@ -145,8 +120,9 @@ void	push_to_a(t_data *data)
 	printf("stack_b -> ");
 	print(data->stack_b);
 	printf("\n");
-	// =======================
-	bmin = find_bmin_score(data);
-	rotate_stacks(data, bmin);
-	pa(&data->stack_b, &data->stack_a);
+    // =======================
+	bmin = find_bmin_score(data, &position);
+    printf("1\n");
+	rotate_stacks(data, bmin, position);
+    pa(&data->stack_b, &data->stack_a);
 }

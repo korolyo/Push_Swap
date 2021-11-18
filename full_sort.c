@@ -66,9 +66,9 @@ void	full_sort(t_data *data)
 	printf("\n");
 	printf("stack_b -> ");
 	print(data->stack_b);
-	printf("\n");
+    printf("1\n");
 	// =======================
 	while (data->stack_b != NULL)
 		push_to_a(data);
-//	final_rotations(&data->stack_a);
+	final_rotations(&data->stack_a);
 }
