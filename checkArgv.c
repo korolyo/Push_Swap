@@ -6,7 +6,7 @@
 /*   By: acollin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 20:38:28 by acollin           #+#    #+#             */
-/*   Updated: 2021/10/09 12:01:13 by acollin          ###   ########.fr       */
+/*   Updated: 2021/11/18 19:36:41 by acollin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,56 @@
 //
 //}
 
-void	multi_arg(int argc, char **argv, t_dlist **stack_a)
+uint32_t	multi_arg(int argc, char **argv, t_dlist **stack_a)
 {
-	int		i;
-    int     count;
-    int     num;
-	int64_t	val;
-    char    **args;
-	t_dlist	*newnode;
+	int			i;
+    int     	count;
+    uint32_t	num;
+	uint32_t	final;
+	int64_t		val;
+    char    	**args;
+	t_dlist		*newnode;
 
 
 	i = 1;
+	final = 0;
     while (i < argc)
     {
-        count = 1;
+        count = 0;
         num = 0;
         args = ft_split(argv[i], ' ');
         while (args[num] != NULL)
-            ++num;
-        while (count < num)
+		{
+//			printf("arg[%u] = %s\n", num, args[num]);
+			num++;
+		}
+		final += num;
+		valid_check((int)num, args);
+//		printf("hello\n");
+		while (count < (int)num)
         {
+//			Delete
+//			printf("stack_a -> ");
+//			print(*stack_a);
+//			printf("\n");
+//			 =======================
             val = ft_atol(args[count]);
+//			printf("val = %lld\n", val);
+//			printf("count = %i\n", count);
             newnode = dlistnew(val);
             dlstadd_back(stack_a, newnode);
+//			printf("stack_a head = %lld\n", (*stack_a)->value);
             count++;
+//			Delete
+//			printf("stack_a -> ");
+//			print(*stack_a);
+//			printf("\n");
+//			 =======================
         }
         free(args);
         i++;
     }
+	return (final);
 }
 
 int	dupl_check(int argc, char **argv)
@@ -90,14 +112,16 @@ void	valid_check(int argc, char **argv)
 	int	i;
 	int	j;
 
-	i = 1;
-	if (argc < 2)
-		exit(EXIT_SUCCESS);
+	i = 0;
+
 	while (i < argc)
 	{
 		j = 0;
 		while (j < (int)ft_strlen(argv[i]))
 		{
+//			printf("hello\n");
+//			printf("argv[%d][%d] = %c\n", i, j, argv[i][j]);
+//			printf("i = %d\n", i);
 			if (argv[i][j] == '-')
 				j++;
 			if (!ft_isdigit(argv[i][j]))
@@ -110,11 +134,19 @@ void	valid_check(int argc, char **argv)
 
 void	check_argv(int argc, char **argv, t_data *data)
 {
-	valid_check(argc, argv);
-	dupl_check(argc, argv);
-	data->size_a = (uint64_t)argc - 1;
-	if (argc > 2)
-		multi_arg(argc, argv, &data->stack_a);
-	else
-		error("Error");
+	if (argc < 2)
+		exit(EXIT_SUCCESS);
+//	dupl_check(argc, argv);
+	data->size_a = multi_arg(argc, argv, &data->stack_a);
+//	else
+//		error("Error");
+////Delete
+//	printf("stack_a -> ");
+//	print(data->stack_a);
+//	printf("\n");
+//	printf("stack_b -> ");
+//	print(data->stack_b);
+//	printf("\n");
+//	// =======================
+	printf("size_a = %u\n", data->size_a);
 }

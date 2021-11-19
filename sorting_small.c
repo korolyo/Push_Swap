@@ -16,6 +16,14 @@ void	sort_six(t_data *data)
 {
 	while (data->size_b != 0)
 	{
+		//Delete
+		printf("stack_a -> ");
+		print(data->stack_a);
+		printf("\n");
+		printf("stack_b -> ");
+		print(data->stack_b);
+		printf("\n");
+		// =======================
 		if (data->stack_a->value > data->stack_b->value)
 			pa(data, &data->stack_b, &data->stack_a);
 		else if (data->stack_a->value < data->stack_b->value
@@ -29,7 +37,19 @@ void	sort_six(t_data *data)
 		}
 	}
 	while (!(is_sorted(data->stack_a)))
+	{
+		//Delete
+		printf("stack_a -> ");
+		print(data->stack_a);
+		printf("\n");
+		printf("stack_b -> ");
+		print(data->stack_b);
+		printf("\n");
+		// =======================
 		ra(&data->stack_a);
+		sleep(1);
+		printf("here\n");
+	}
 }
 
 void	get_score(t_dlist **stack)
@@ -107,6 +127,8 @@ void	small_sort(t_data *data)
 		pb(data, &data->stack_a, &data->stack_b);
 	if (data->size_a == 3 && is_sorted(data->stack_a) == 0)
 		sort_three_a(&data->stack_a);
+//	printf("%u\n", data->size_a);
+//	printf("%u\n", data->size_b);
 	if (data->size_a == 2)
 		ra(&data->stack_a);
 	if (data->size_b == 3)
@@ -116,6 +138,14 @@ void	small_sort(t_data *data)
 	}
 	else if (data->size_b == 2 && is_sorted(data->stack_b) == 0)
 		rb(&data->stack_b);
+	//Delete
+	printf("stack_a -> ");
+	print(data->stack_a);
+	printf("\n");
+	printf("stack_b -> ");
+	print(data->stack_b);
+	printf("\n");
+	// =======================
 	if (data->size_b > 0)
 		sort_six(data);
 }
