@@ -12,20 +12,49 @@
 
 #include "push_swap.h"
 
+//void    single_arg(int argc, char **argv)
+//{
+//    int64_t count;
+//    int64_t strlen;
+//    char    **args;
+//
+//    args = ft_split(argv[count], ' ');
+//    while ()
+//
+//    strlen = (int64_t)ft_strlen(argv[count]);
+//    count = 0;
+//
+//
+//}
+
 void	multi_arg(int argc, char **argv, t_dlist **stack_a)
 {
 	int		i;
+    int     count;
+    int     num;
 	int64_t	val;
+    char    **args;
 	t_dlist	*newnode;
 
+
 	i = 1;
-	while (i < argc)
-	{
-		val = ft_atol(argv[i]);
-		newnode = dlistnew(val);
-		dlstadd_back(stack_a, newnode);
-		i++;
-	}
+    while (i < argc)
+    {
+        count = 1;
+        num = 0;
+        args = ft_split(argv[i], ' ');
+        while (args[num] != NULL)
+            ++num;
+        while (count < num)
+        {
+            val = ft_atol(args[count]);
+            newnode = dlistnew(val);
+            dlstadd_back(stack_a, newnode);
+            count++;
+        }
+        free(args);
+        i++;
+    }
 }
 
 int	dupl_check(int argc, char **argv)
