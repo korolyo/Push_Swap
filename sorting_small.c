@@ -12,43 +12,56 @@
 
 #include "push_swap.h"
 
-void	sort_six(t_data *data)
+int isMax(t_dlist *stack_a, int64_t max)
+{
+    t_dlist *tmp;
+
+    if (stack_a->value > max)
+        return (0);
+    tmp = stack_a->next;
+    while (tmp != NULL)
+    {
+        if (tmp->value > max)
+            return (0);
+        tmp = tmp->next;
+    }
+    return (1);
+}
+
+void	sort_six(t_data *data, int64_t  min)
 {
 	while (data->size_b != 0)
 	{
-		//Delete
-		printf("stack_a -> ");
-		print(data->stack_a);
-		printf("\n");
-		printf("stack_b -> ");
-		print(data->stack_b);
-		printf("\n");
-		// =======================
+//		//Delete
+//		printf("stack_a -> ");
+//		print(data->stack_a);
+//		printf("\n");
+//		printf("stack_b -> ");
+//		print(data->stack_b);
+//		printf("\n");
+//        printf("min = %lld", min);
+//		// =======================
 		if (data->stack_a->value > data->stack_b->value)
 			pa(data, &data->stack_b, &data->stack_a);
-		else if (data->stack_a->value < data->stack_b->value
-			&& ((data->stack_a->next->next->value > data->stack_b->value)
-				|| (data->stack_a->next->value > data->stack_b->value)))
-			ra(&data->stack_a);
-		else if (data->stack_a->next->next->value < data->stack_b->value)
-		{
+		else if ((isMax(data->stack_a, data->stack_b->value)) == 1
+            && data->stack_a->value == min)
 			pa(data, &data->stack_b, &data->stack_a);
-			ra(&data->stack_a);
-		}
+        ra(&data->stack_a);
+        sleep(5);
 	}
 	while (!(is_sorted(data->stack_a)))
 	{
-		//Delete
-		printf("stack_a -> ");
-		print(data->stack_a);
-		printf("\n");
-		printf("stack_b -> ");
-		print(data->stack_b);
-		printf("\n");
-		// =======================
+//		//Delete
+//		printf("stack_a -> ");
+//		print(data->stack_a);
+//		printf("\n");
+//		printf("stack_b -> ");
+//		print(data->stack_b);
+//		printf("\n");
+//		// =======================
 		ra(&data->stack_a);
-		sleep(1);
-		printf("here\n");
+//		sleep(1);
+//		printf("here\n");
 	}
 }
 
@@ -123,6 +136,17 @@ void	sort_three_b(t_dlist **stack)
 
 void	small_sort(t_data *data)
 {
+    t_dlist *tmp;
+    int64_t min;
+
+    tmp = data->stack_a;
+    min = data->stack_a->value;
+    while (tmp != NULL)
+    {
+        if (min > tmp->value)
+            min = tmp->value;
+        tmp = tmp->next;
+    }
 	while (data->size_a > 3)
 		pb(data, &data->stack_a, &data->stack_b);
 	if (data->size_a == 3 && is_sorted(data->stack_a) == 0)
@@ -138,14 +162,14 @@ void	small_sort(t_data *data)
 	}
 	else if (data->size_b == 2 && is_sorted(data->stack_b) == 0)
 		rb(&data->stack_b);
-	//Delete
-	printf("stack_a -> ");
-	print(data->stack_a);
-	printf("\n");
-	printf("stack_b -> ");
-	print(data->stack_b);
-	printf("\n");
-	// =======================
+//	//Delete
+//	printf("stack_a -> ");
+//	print(data->stack_a);
+//	printf("\n");
+//	printf("stack_b -> ");
+//	print(data->stack_b);
+//	printf("\n");
+//	// =======================
 	if (data->size_b > 0)
-		sort_six(data);
+		sort_six(data, min);
 }
