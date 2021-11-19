@@ -52,7 +52,7 @@ void	init_data(t_data *data)
 	data->size_b = 0;
 }
 
-//DONT FORGET TO DELETE
+//DONT FORGET TO DELETE=========================
 void	print(t_dlist *stack)
 {
 	t_dlist	*tmp;
@@ -64,7 +64,7 @@ void	print(t_dlist *stack)
 		tmp = tmp->next;
 	}
 }
-
+//==============================================
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -72,13 +72,5 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	check_argv(argc, argv, &data);
 	sorting(&data);
-	//Delete
-	printf("stack_a -> ");
-	print(data.stack_a);
-	printf("\n");
-	printf("stack_b -> ");
-	print(data.stack_b);
-	printf("\n");
-	// =======================
 	exit(EXIT_SUCCESS);
 }

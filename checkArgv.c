@@ -65,13 +65,7 @@ uint32_t	multi_arg(int argc, char **argv, t_dlist **stack_a)
 //			printf("count = %i\n", count);
             newnode = dlistnew(val);
             dlstadd_back(stack_a, newnode);
-//			printf("stack_a head = %lld\n", (*stack_a)->value);
             count++;
-//			Delete
-//			printf("stack_a -> ");
-//			print(*stack_a);
-//			printf("\n");
-//			 =======================
         }
         free(args);
         i++;
@@ -140,13 +134,5 @@ void	check_argv(int argc, char **argv, t_data *data)
 	data->size_a = multi_arg(argc, argv, &data->stack_a);
 //	else
 //		error("Error");
-////Delete
-//	printf("stack_a -> ");
-//	print(data->stack_a);
-//	printf("\n");
-//	printf("stack_b -> ");
-//	print(data->stack_b);
-//	printf("\n");
-//	// =======================
-	printf("size_a = %u\n", data->size_a);
+//	printf("size_a = %u\n", data->size_a);
 }

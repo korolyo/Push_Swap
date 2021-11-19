@@ -43,10 +43,10 @@ void	push_to_b(t_data *data, int64_t min, int64_t med, int64_t max)
 
 void	full_sort(t_data *data)
 {
-	int64_t	min;
-	int64_t	med;
-	int64_t	max;
-	int64_t	*arr;
+	int64_t min;
+	int64_t med;
+	int64_t max;
+	int64_t *arr;
 
 	arr = presort_arr(data, &min, &max, &med);
 	while (data->stack_a->value != med)
@@ -54,16 +54,9 @@ void	full_sort(t_data *data)
 	push_to_b(data, min, med, max);
 	if (data->stack_a->value == max)
 		ra(&data->stack_a);
-//	printf("1\n");
 	while (data->stack_b != NULL)
+	{
 		push_to_a(data);
-//	//Delete
-//	printf("stack_a -> ");
-//	print(data->stack_a);
-//	printf("\n");
-//	printf("stack_b -> ");
-//	print(data->stack_b);
-//	printf("\n");
-//	// =======================
-//	final_rotations(&data->stack_a);
+	}
+	final_rotations(&data->stack_a);
 }
