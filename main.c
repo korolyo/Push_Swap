@@ -72,5 +72,13 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	check_argv(argc, argv, &data);
 	sorting(&data);
+//	//Delete
+//	printf("stack_a -> ");
+//	print(data.stack_a);
+//	printf("\n");
+//	printf("stack_b -> ");
+//	print(data.stack_b);
+//	printf("\n");
+//	// =======================
 	exit(EXIT_SUCCESS);
 }

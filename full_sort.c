@@ -56,6 +56,14 @@ void	full_sort(t_data *data)
 		ra(&data->stack_a);
 	while (data->stack_b != NULL)
 	{
+//		//Delete
+//		printf("stack_a -> ");
+//		print(data->stack_a);
+//		printf("\n");
+//		printf("stack_b -> ");
+//		print(data->stack_b);
+//		printf("\n");
+//		// =======================
 		push_to_a(data);
 	}
 	final_rotations(&data->stack_a);

@@ -23,6 +23,7 @@ void	rotate_stacks(t_data *data, t_dlist *bmin, int64_t position)
     else
         rotate_b = position - data->size_b;
     stack_rotations(data, &rotate_a, &rotate_b);
+	pa(data, &data->stack_b, &data->stack_a);
 }
 
 t_dlist	*find_bmin_score(t_data *data, int64_t *position)
@@ -120,5 +121,4 @@ void	push_to_a(t_data *data)
 //	// =======================
 	bmin = find_bmin_score(data, &position);
 	rotate_stacks(data, bmin, position);
-    pa(data, &data->stack_b, &data->stack_a);
 }
