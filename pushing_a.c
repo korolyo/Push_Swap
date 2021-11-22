@@ -22,7 +22,7 @@ void	rotate_stacks(t_data *data, t_dlist *bmin, int64_t position)
         rotate_b = position;
     else
         rotate_b = position - data->size_b;
-    stack_rotations(data, &rotate_a, &rotate_b);
+    stack_rotations(data, rotate_a, rotate_b);
 	pa(data, &data->stack_b, &data->stack_a);
 }
 

@@ -41,12 +41,34 @@ void	push_to_b(t_data *data, int64_t min, int64_t med, int64_t max)
 	}
 }
 
+int64_t find_rotations_to_elem(t_dlist *stack, uint32_t size, int64_t min)
+{
+    int64_t count;
+    t_dlist *tmp;
+
+    if (stack->value == min)
+        return (0);
+    count = 1;
+    tmp = stack->next;
+    while (tmp != NULL)
+    {
+        if (tmp->value == min)
+            break ;
+        tmp = tmp->next;
+        ++count;
+    }
+    if (count < size - count)
+        return (count);
+    return (count - size);
+}
+
 void	full_sort(t_data *data)
 {
 	int64_t min;
 	int64_t med;
 	int64_t max;
 	int64_t *arr;
+    int64_t rotate_a;
 
 	arr = presort_arr(data, &min, &max, &med);
 	while (data->stack_a->value != med)
@@ -66,5 +88,17 @@ void	full_sort(t_data *data)
 //		// =======================
 		push_to_a(data);
 	}
-	final_rotations(&data->stack_a);
+//    printf("size_a = %u, min = %lld\n", data->size_a, min);
+    rotate_a = find_rotations_to_elem(data->stack_a, data->size_a, min);
+//    printf("rotate_a = %lld\n", rotate_a);
+//    	//Delete
+//	printf("stack_a -> ");
+//	print(data->stack_a);
+//	printf("\n");
+//	printf("stack_b -> ");
+//	print(data->stack_b);
+//	printf("\n");
+//	// =======================
+	stack_rotations(data, rotate_a, 0);
+//    printf("check\n");
 }

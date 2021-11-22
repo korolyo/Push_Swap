@@ -52,14 +52,14 @@ void	lone_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b)
 	}
 }
 
-void	stack_rotations(t_data *data, int64_t *rotate_a,  int64_t *rotate_b)
+void	stack_rotations(t_data *data, int64_t rotate_a,  int64_t rotate_b)
 {
-	paired_rotations(data, rotate_a, rotate_b);
-	lone_rotations(data, rotate_a, rotate_b);
+	paired_rotations(data, &rotate_a, &rotate_b);
+	lone_rotations(data, &rotate_a, &rotate_b);
 }
-
-void	final_rotations(t_dlist **stack_a)
-{
-	while ((is_sorted(*stack_a)) == 0)
-		ra(stack_a);
-}
+//
+//void	final_rotations(t_dlist **stack_a)
+//{
+//	while ((is_sorted(*stack_a)) == 0)
+//		ra(stack_a);
+//}
