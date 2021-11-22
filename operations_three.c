@@ -22,16 +22,16 @@ int	ss(t_dlist **stack_a, t_dlist **stack_b)
 
 int	rr(t_dlist **stack_a, t_dlist **stack_b)
 {
-	ra(stack_a);
-	rb(stack_b);
+	rotate(stack_a);
+	rotate(stack_b);
 	ft_putstr_fd("rr\n", 1);
 	return (0);
 }
 
 int	rrr(t_dlist **stack_a, t_dlist **stack_b)
 {
-	rra(stack_a);
-	rrb(stack_b);
+	reverse_rotate(stack_a);
+	reverse_rotate(stack_b);
 	ft_putstr_fd("rrr\n", 1);
 	return (0);
 }

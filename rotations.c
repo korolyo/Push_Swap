@@ -30,36 +30,34 @@ void	paired_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b)
 
 void	lone_rotations(t_data *data, int64_t *rotate_a, int64_t *rotate_b)
 {
-	while (*rotate_a > 0)
+	while (*rotate_b < 0)
 	{
-		ra(&data->stack_a);
-		(*rotate_a)--;
+		reverse_rotate(&data->stack_b);
+		(*rotate_b)++;
+		ft_putstr_fd("rrb\n", 1);
 	}
 	while (*rotate_b > 0)
 	{
-		rb(&data->stack_b);
+		rotate(&data->stack_b);
 		(*rotate_b)--;
+		ft_putstr_fd("rb\n", 1);
 	}
 	while (*rotate_a < 0)
 	{
-		rra(&data->stack_a);
+		reverse_rotate(&data->stack_a);
 		(*rotate_a)++;
+		ft_putstr_fd("rra\n", 1);
 	}
-	while (*rotate_b < 0)
+	while (*rotate_a > 0)
 	{
-		rrb(&data->stack_b);
-		(*rotate_b)++;
+		rotate(&data->stack_a);
+		(*rotate_a)--;
+		ft_putstr_fd("ra\n", 1);
 	}
 }
 
-void	stack_rotations(t_data *data, int64_t rotate_a,  int64_t rotate_b)
+void	stack_rotations(t_data *data, int64_t rotate_a, int64_t rotate_b)
 {
 	paired_rotations(data, &rotate_a, &rotate_b);
 	lone_rotations(data, &rotate_a, &rotate_b);
 }
-//
-//void	final_rotations(t_dlist **stack_a)
-//{
-//	while ((is_sorted(*stack_a)) == 0)
-//		ra(stack_a);
-//}

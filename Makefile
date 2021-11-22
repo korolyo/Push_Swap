@@ -14,6 +14,7 @@ SOURCES_LIST	= 	main.c\
 					presorted_array.c\
 					pushing_a.c\
 					operations_three.c\
+					base_operations.c\
 
 CC		= gcc
 CFLAGS	=	-Werror -Wall -Wextra

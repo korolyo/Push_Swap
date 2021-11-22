@@ -38,11 +38,10 @@ int64_t	*bubble_sort(int64_t *arr, int64_t size_a)
 	return (arr);
 }
 
-int64_t	*presort_arr(t_data *data, int64_t *min, int64_t *max, int64_t *med)
+int64_t	*presort_ar(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 {
 	int64_t	*arr;
 	int64_t	count;
-//	int64_t	count1;
 	t_dlist	*tmp;
 
 	tmp = data->stack_a;
@@ -65,12 +64,6 @@ int64_t	*presort_arr(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 		tmp = tmp->next;
 	}
 	arr = bubble_sort(arr, data->size_a);
-//	count1 = 0;
-//	while (count1 < count)
-//	{
-//		printf("%lld\n", arr[count1]);
-//		count1++;
-//	}
 	*min = arr[0];
 	*med = arr[count / 2];
 	return (arr);

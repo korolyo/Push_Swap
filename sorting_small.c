@@ -12,32 +12,32 @@
 
 #include "push_swap.h"
 
-int isMax(t_dlist *stack_a, int64_t max)
+int	isMax(t_dlist *stack_a, int64_t max)
 {
-    t_dlist *tmp;
+	t_dlist	*tmp;
 
-    if (stack_a->value > max)
-        return (0);
-    tmp = stack_a->next;
-    while (tmp != NULL)
-    {
-        if (tmp->value > max)
-            return (0);
-        tmp = tmp->next;
-    }
-    return (1);
+	if (stack_a->value > max)
+		return (0);
+	tmp = stack_a->next;
+	while (tmp != NULL)
+	{
+		if (tmp->value > max)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
 }
 
-void	sort_six(t_data *data, int64_t  min)
+void	sort_six(t_data *data, int64_t min)
 {
 	while (data->size_b != 0)
 	{
 		if (data->stack_a->value > data->stack_b->value)
 			pa(data, &data->stack_b, &data->stack_a);
 		else if ((isMax(data->stack_a, data->stack_b->value)) == 1
-            && data->stack_a->value == min)
+			&& data->stack_a->value == min)
 			pa(data, &data->stack_b, &data->stack_a);
-        ra(&data->stack_a);
+		ra(&data->stack_a);
 	}
 	while (!(is_sorted(data->stack_a)))
 	{
@@ -116,17 +116,17 @@ void	sort_three_b(t_dlist **stack)
 
 void	small_sort(t_data *data)
 {
-    t_dlist *tmp;
-    int64_t min;
+	t_dlist	*tmp;
+	int64_t	min;
 
-    tmp = data->stack_a;
-    min = data->stack_a->value;
-    while (tmp != NULL)
-    {
-        if (min > tmp->value)
-            min = tmp->value;
-        tmp = tmp->next;
-    }
+	tmp = data->stack_a;
+	min = data->stack_a->value;
+	while (tmp != NULL)
+	{
+		if (min > tmp->value)
+			min = tmp->value;
+		tmp = tmp->next;
+	}
 	while (data->size_a > 3)
 		pb(data, &data->stack_a, &data->stack_b);
 	if (data->size_a == 3 && is_sorted(data->stack_a) == 0)

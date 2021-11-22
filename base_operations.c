@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_two.c                                   :+:      :+:    :+:   */
+/*   base_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acollin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,30 +12,43 @@
 
 #include "push_swap.h"
 
-int	ra(t_dlist **stack_a)
+int	rotate(t_dlist **stack)
 {
-	rotate(stack_a);
-	ft_putstr_fd("ra\n", 1);
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
+
+	st = *stack;
+	if (!(st && st->next))
+		 return (0);
+	temp = *stack;
+	st = st->next;
+	temp_last = st;
+	while (temp_last->next != NULL)
+		temp_last = temp_last->next;
+	temp_last->next = temp;
+	temp->next = NULL;
+	*stack = st;
 	return (0);
 }
 
-int	rb(t_dlist **stack_b)
+int	reverse_rotate(t_dlist **stack)
 {
-	rotate(stack_b);
-	ft_putstr_fd("rb\n", 1);
-	return (0);
-}
+	t_dlist	*temp;
+	t_dlist	*temp_last;
+	t_dlist	*st;
 
-int	rra(t_dlist **stack_a)
-{
-	reverse_rotate(stack_a);
-	ft_putstr_fd("rra\n", 1);
-	return (0);
-}
-
-int	rrb(t_dlist **stack_b)
-{
-	reverse_rotate(stack_b);
-	ft_putstr_fd("rrb\n", 1);
+	st = *stack;
+	if (!(st && st->next))
+		return (0);
+	temp_last = st;
+	while (temp_last->next)
+	{
+		temp = temp_last;
+		temp_last = temp_last->next;
+	}
+	temp_last->next = st;
+	temp->next = NULL;
+	*stack = temp_last;
 	return (0);
 }

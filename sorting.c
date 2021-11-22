@@ -14,7 +14,7 @@
 
 int	is_sorted(t_dlist *stack)
 {
-	t_dlist *tmp;
+	t_dlist	*tmp;
 
 	tmp = stack;
 	while (tmp->next != NULL)
