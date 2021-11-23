@@ -12,15 +12,15 @@
 
 #include "push_swap.h"
 
-uint32_t	multi_arg(int argc, char **argv, t_dlist **stack_a)
+int64_t	multi_arg(int argc, char **argv, t_dlist **stack_a)
 {
-	int			i;
-	int			count;
-	uint32_t	num;
-	uint32_t	final;
-	int64_t		val;
-	char		**args;
-	t_dlist		*newnode;
+	int		i;
+	int		count;
+	int64_t	num;
+	int64_t	final;
+	int64_t	val;
+	char	**args;
+	t_dlist	*newnode;
 
 	i = 1;
 	final = 0;
@@ -91,6 +91,8 @@ void	valid_check(int argc, char **argv)
 				error("Error");
 			j++;
 		}
+		if (ft_atol(argv[i]) > INT_MAX || ft_atol(argv[i]) < INT_MIN)
+			error("Error");
 		i++;
 	}
 }

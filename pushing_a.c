@@ -62,10 +62,13 @@ int64_t	a_rotations(t_data *data, int64_t value)
 		last = last->next;
 	while ((value > tmp->value || last->value > value) && tmp)
 	{
+//		printf("tmp->value = %lld\n", tmp->value);
+//		printf("check a rot\n");
 		last = tmp;
 		tmp = tmp->next;
 		++count;
 	}
+//	printf("count = %lld\n", count);
 	if (count < data->size_a - count - 1)
 		return (count);
 	return (count - data->size_a);
@@ -92,6 +95,7 @@ void	find_b_score(t_data *data, t_dlist *curr, int64_t count)
 	}
 	else
 		curr->score = my_abs(rotate_a) + my_abs(rotate_b);
+//	printf("current->score = %lld\n", curr->score);
 }
 
 void	push_to_a(t_data *data)
@@ -105,10 +109,20 @@ void	push_to_a(t_data *data)
 	curr_elem = data->stack_b;
 	while (count < data->size_b)
 	{
+//		printf("check\n");
+////Delete
+//		printf("stack_a -> ");
+//		print(data->stack_a);
+//		printf("\n");
+//		printf("stack_b -> ");
+//		print(data->stack_b);
+//		printf("\n");
+//		// =======================
 		find_b_score(data, curr_elem, count);
 		count++;
 		curr_elem = curr_elem->next;
 	}
 	bmin = find_bmin_score(data, &position);
+//	printf("b position = %lld\n", position);
 	rotate_stacks(data, bmin, position);
 }
