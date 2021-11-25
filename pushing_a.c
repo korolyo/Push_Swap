@@ -34,11 +34,11 @@ t_dlist	*find_bmin_score(t_data *data, int64_t *position)
 
 	*position = 0;
 	count = 1;
-	tmp_b = data->stack_b->next;
 	bmin = data->stack_b;
-	while (count < data->size_b - 1)
+	tmp_b = data->stack_b->next;
+	while (count < data->size_b)
 	{
-		if (tmp_b->score < tmp_b->next->score)
+		if (tmp_b->score < bmin->score)
 		{
 			*position = count;
 			bmin = tmp_b;
@@ -79,7 +79,6 @@ void	find_b_score(t_data *data, t_dlist *curr, int64_t count)
 	int64_t	rotate_a;
 	int64_t	rotate_b;
 
-	count = 0;
 	rotate_a = a_rotations(data, curr->value);
 	if (count < data->size_b - count)
 		rotate_b = count;
@@ -109,20 +108,10 @@ void	push_to_a(t_data *data)
 	curr_elem = data->stack_b;
 	while (count < data->size_b)
 	{
-//		printf("check\n");
-////Delete
-//		printf("stack_a -> ");
-//		print(data->stack_a);
-//		printf("\n");
-//		printf("stack_b -> ");
-//		print(data->stack_b);
-//		printf("\n");
-//		// =======================
 		find_b_score(data, curr_elem, count);
-		count++;
 		curr_elem = curr_elem->next;
+		count++;
 	}
 	bmin = find_bmin_score(data, &position);
-//	printf("b position = %lld\n", position);
 	rotate_stacks(data, bmin, position);
 }

@@ -14,22 +14,16 @@
 
 void	push_to_b(t_data *data, int64_t min, int64_t med, int64_t max)
 {
-	t_dlist	*head;
 	int		count;
 
 	count = 0;
-	head = data->stack_a;
 	while (42)
 	{
 		if (data->stack_a->value != min && data->stack_a->value != max)
 		{
-			if (data->stack_a->value < med)
-				pb(data, &data->stack_a, &data->stack_b);
-			else
-			{
-				pb(data, &data->stack_a, &data->stack_b);
+			pb(data, &data->stack_a, &data->stack_b);
+			if (data->stack_b->value > med)
 				rb(&data->stack_b);
-			}
 		}
 		else if (count != 2)
 		{
