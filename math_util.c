@@ -19,3 +19,19 @@ int64_t	my_abs(int64_t value)
 	else
 		return ((-1) * value);
 }
+
+int	isMax(t_dlist *stack_a, int64_t max)
+{
+	t_dlist	*tmp;
+
+	if (stack_a->value > max)
+		return (0);
+	tmp = stack_a->next;
+	while (tmp != NULL)
+	{
+		if (tmp->value > max)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}

@@ -65,22 +65,11 @@ void	full_sort(t_data *data)
 	int64_t	rotate_a;
 
 	arr = presort_ar(data, &min, &max, &med);
-//	printf("min = %lld, med = %lld max = %lld\n", min, med, max);
 	push_to_b(data, min, med, max);
-//	//Delete
-//	printf("stack_a -> ");
-//	print(data->stack_a);
-//	printf("\n");
-//	printf("stack_b -> ");
-//	print(data->stack_b);
-//	printf("\n");
-//	// =======================
 	if (data->stack_a->value == max)
 		ra(&data->stack_a);
 	while (data->stack_b != NULL)
-	{
 		push_to_a(data);
-	}
 	rotate_a = find_rotations_to_elem(data->stack_a, data->size_a, min);
 	stack_rotations(data, rotate_a, 0);
 }

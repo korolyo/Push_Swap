@@ -52,20 +52,6 @@ void	init_data(t_data *data)
 	data->size_b = 0;
 }
 
-//DONT FORGET TO DELETE=========================
-void	print(t_dlist *stack)
-{
-	t_dlist	*tmp;
-
-	tmp = stack;
-	while (tmp)
-	{
-		printf("%lli <-> ", tmp->value);
-		tmp = tmp->next;
-	}
-}
-//==============================================
-
 int	main(int argc, char **argv)
 {
 	t_data	data;

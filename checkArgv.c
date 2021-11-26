@@ -12,66 +12,45 @@
 
 #include "push_swap.h"
 
+void	args_trans(t_dlist **stack_a, char **args, int64_t	num)
+{
+	t_dlist	*newnode;
+	int64_t	count;
+	int64_t	val;
+
+	count = 0;
+	val = 0;
+	while (count < num)
+	{
+		val = ft_atol(args[count]);
+		newnode = dlistnew(val);
+		dlstadd_back(stack_a, newnode);
+		count++;
+	}
+}
+
 int64_t	multi_arg(int argc, char **argv, t_dlist **stack_a)
 {
 	int		i;
-	int		count;
 	int64_t	num;
 	int64_t	final;
-	int64_t	val;
 	char	**args;
-	t_dlist	*newnode;
 
 	i = 1;
 	final = 0;
 	while (i < argc)
 	{
-		count = 0;
 		num = 0;
 		args = ft_split(argv[i], ' ');
 		while (args[num] != NULL)
 			num++;
 		final += num;
 		valid_check((int)num, args);
-		while (count < (int)num)
-		{
-			val = ft_atol(args[count]);
-			newnode = dlistnew(val);
-			dlstadd_back(stack_a, newnode);
-			count++;
-		}
+		args_trans(stack_a, args, num);
 		free(args);
 		i++;
 	}
 	return (final);
-}
-
-int	dupl_check(int argc, char **argv)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 1;
-	j = 0;
-	count = 0;
-	while (i < argc - 1)
-	{
-		j = i + 1;
-		if (ft_atol(argv[i]) < ft_atol(argv[j]))
-			count++;
-		while (j < argc)
-		{
-			if (ft_atol(argv[i]) == ft_atol(argv[j])
-				|| (ft_atol(argv[i]) < INT_MIN || ft_atol(argv[i]) > INT_MAX))
-				error("Error");
-			if (count == argc - 2)
-				exit(EXIT_SUCCESS);
-			j++;
-		}
-		i++;
-	}
-	return (0);
 }
 
 void	valid_check(int argc, char **argv)
@@ -97,10 +76,36 @@ void	valid_check(int argc, char **argv)
 	}
 }
 
+int	dupl_check(t_data *data)
+{
+	int		i;
+	int		j;
+	t_dlist	*tmp_a;
+	t_dlist	*tmp_b;
+
+	i = 0;
+	tmp_a = data->stack_a;
+	while (i < data->size_a - 1)
+	{
+		tmp_b = tmp_a->next;
+		j = i + 1;
+		while (j < data->size_a)
+		{
+			if (tmp_a->value == tmp_b->value)
+				error("Error");
+			tmp_b = tmp_b->next;
+			j++;
+		}
+		tmp_a = tmp_a->next;
+		i++;
+	}
+	return (0);
+}
+
 void	check_argv(int argc, char **argv, t_data *data)
 {
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
-//	dupl_check(argc, argv);
 	data->size_a = multi_arg(argc, argv, &data->stack_a);
+	dupl_check(data);
 }

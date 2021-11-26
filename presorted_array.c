@@ -38,6 +38,25 @@ int64_t	*bubble_sort(int64_t *arr, int64_t size_a)
 	return (arr);
 }
 
+int64_t	mmm_values(t_data *data, int64_t *min, int64_t *max)
+{
+	t_dlist	*tmp;
+	int64_t	count;
+
+	count = 0;
+	tmp = data->stack_a;
+	while (tmp != NULL)
+	{
+		if (tmp->value > *max)
+			*max = tmp->value;
+		else if (tmp->value < *min)
+			*min = tmp->value;
+		count++;
+		tmp = tmp->next;
+	}
+	return (count);
+}
+
 int64_t	*presort_ar(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 {
 	int64_t	*arr;
@@ -48,15 +67,7 @@ int64_t	*presort_ar(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 	count = 0;
 	*max = tmp->value;
 	*min = tmp->value;
-	while (tmp != NULL)
-	{
-		if (tmp->value > *max)
-			*max = tmp->value;
-		else if (tmp->value < *min)
-			*min = tmp->value;
-		count++;
-		tmp = tmp->next;
-	}
+	count = mmm_values(data, min, max);
 	arr = ft_calloc(sizeof(int), count + 1);
 	tmp = data->stack_a;
 	count = 0;
@@ -67,7 +78,6 @@ int64_t	*presort_ar(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 		tmp = tmp->next;
 	}
 	arr = bubble_sort(arr, data->size_a);
-//	printf("arr[0] = %lld\n", arr[0]);
 	*med = arr[count / 2];
 	return (arr);
 }

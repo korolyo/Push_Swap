@@ -12,22 +12,6 @@
 
 #include "push_swap.h"
 
-int	isMax(t_dlist *stack_a, int64_t max)
-{
-	t_dlist	*tmp;
-
-	if (stack_a->value > max)
-		return (0);
-	tmp = stack_a->next;
-	while (tmp != NULL)
-	{
-		if (tmp->value > max)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
 void	sort_six(t_data *data, int64_t min)
 {
 	while (data->size_b != 0)
@@ -133,11 +117,8 @@ void	small_sort(t_data *data)
 		sort_three_a(&data->stack_a);
 	if (data->size_a == 2)
 		ra(&data->stack_a);
-	if (data->size_b == 3)
-	{
-		if (is_sorted(data->stack_b) == 0)
-			sort_three_b(&data->stack_b);
-	}
+	if (data->size_b == 3 && (is_sorted(data->stack_b) == 0))
+		sort_three_b(&data->stack_b);
 	else if (data->size_b == 2 && is_sorted(data->stack_b) == 0)
 		rb(&data->stack_b);
 	if (data->size_b > 0)
