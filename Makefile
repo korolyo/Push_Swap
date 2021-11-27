@@ -17,7 +17,7 @@ SOURCES_LIST	= 	main.c\
 					base_operations.c\
 
 CC		= gcc
-CFLAGS	=	-Werror -Wall -Wextra
+CFLAGS	=	-Werror -Wall -Wextra -g
 LIBRARIES =	-lft\
 	-L$(LIBFT_DIRECTORY) \
 

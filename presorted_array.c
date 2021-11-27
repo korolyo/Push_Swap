@@ -20,10 +20,10 @@ int64_t	*bubble_sort(int64_t *arr, int64_t size_a)
 
 	i = 0;
 	j = 0;
-	while (i < size_a - 2)
+	while (i < size_a)
 	{
 		j = i + 1;
-		while (j < size_a - 1)
+		while (j < size_a)
 		{
 			if (arr[i] > arr[j])
 			{
@@ -68,7 +68,7 @@ int64_t	*presort_ar(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 	*max = tmp->value;
 	*min = tmp->value;
 	count = mmm_values(data, min, max);
-	arr = ft_calloc(sizeof(int), count + 1);
+	arr = ft_calloc(sizeof(int64_t), count);
 	tmp = data->stack_a;
 	count = 0;
 	while (tmp != NULL)

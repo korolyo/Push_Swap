@@ -18,8 +18,15 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	sizeinbytes;
 	char	*s;
 
+	if (nmemb == 0 || size == 0)
+	{
+		size = 1;
+		nmemb = size;
+	}
 	sizeinbytes = nmemb * size;
 	p = malloc (sizeinbytes);
+	if (NULL == p)
+		return (NULL);
 	s = p;
 	if (p != NULL)
 	{

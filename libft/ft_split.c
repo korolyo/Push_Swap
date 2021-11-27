@@ -53,7 +53,7 @@ static char	*result(size_t j, size_t reslen, char **call, char *str)
 {
 	size_t	i;
 
-	call[j] = (char *)ft_calloc(sizeof(char), reslen + 1);
+	call[j] = (char *)ft_calloc(sizeof(char), reslen);
 	if (call[j] == NULL)
 	{
 		free_array(call);
