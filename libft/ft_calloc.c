@@ -15,23 +15,15 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*p;
-	size_t	sizeinbytes;
-	char	*s;
 
 	if (nmemb == 0 || size == 0)
 	{
 		size = 1;
 		nmemb = size;
 	}
-	sizeinbytes = nmemb * size;
-	p = malloc (sizeinbytes);
+	p = (void *)malloc(nmemb * size);
 	if (NULL == p)
 		return (NULL);
-	s = p;
-	if (p != NULL)
-	{
-		while (sizeinbytes--)
-			*s++ = 0;
-	}
+    ft_bzero(p, nmemb * size);
 	return (p);
 }

@@ -12,23 +12,23 @@
 
 #include "libft.h"
 
-static char	**free_array(char **res)
-{
-	int	i;
-
-	i = 0;
-	while (res[i])
-	{
-		free(res[i]);
-		i++;
-	}
-	free(res);
-	return (NULL);
-}
-
+//static char	**free_array(char **res)
+//{
+//	int	i;
+//
+//	i = 0;
+//	while (res[i] != NULL)
+//	{
+//		free(res[i]);
+//		i++;
+//	}
+//	free(res);
+//	return (NULL);
+//}
+//
 static int	count_words(char const *s, char c)
 {
-	size_t	count;
+	int     count;
 	size_t	flag;
 	size_t	i;
 
@@ -49,69 +49,120 @@ static int	count_words(char const *s, char c)
 	return (count);
 }
 
-static char	*result(size_t j, size_t reslen, char **call, char *str)
-{
-	size_t	i;
+//static char	*result(size_t j, size_t reslen, char **res, char *str)
+//{
+//	size_t	i;
+//
+//	res[j] = (char *)ft_calloc(sizeof(char), (reslen + 1));
+//	if (res[j] == NULL)
+//	{
+//		free_array(res);
+//		return (NULL);
+//	}
+//	i = 0;
+//	while (reslen > 0)
+//	{
+//		res[j][i] = *(str - reslen);
+//		i++;
+//		reslen--;
+//	}
+//	return (res[j]);
+//}
+//
+//static void	*printres(char *str, char c, char **res, int count)
+//{
+//	size_t	j;
+//	size_t	reslen;
+//
+//	j = 0;
+//	reslen = 0;
+//	while (count > 0)
+//	{
+//		while (*str == c)
+//			str++;
+//		if (*str != c)
+//		{
+//			while (*str != c && *str)
+//			{
+//				reslen++;
+//				str++;
+//			}
+//			result(j, reslen, res, str);
+//			reslen = 0;
+//			j++;
+//		}
+//		count--;
+//	}
+//	res[j] = NULL;
+//	return ((char **)res);
+//}
 
-	call[j] = (char *)ft_calloc(sizeof(char), reslen);
-	if (call[j] == NULL)
-	{
-		free_array(call);
-		return (NULL);
-	}
-	i = 0;
-	while (reslen > 0)
-	{
-		call[j][i] = *(str - reslen);
-		i++;
-		reslen--;
-	}
-	return (call[j]);
+void    *ft_free_all_split_alloc(char **split, size_t elts)
+{
+    size_t	i;
+
+    i = 0;
+    while (i < elts)
+    {
+        free(split[i]);
+        i++;
+    }
+    free(split);
+    return (NULL);
 }
 
-static char	**printres(char *str, char c, char **res, size_t count)
+static void *ft_split_range(char **split, char const *s, t_split_next *st, t_split_next *lt)
 {
-	size_t	j;
-	size_t	reslen;
+    split[lt->length] = ft_substr(s, st->start, st->length);
+    if (!split[lt->length])
+        return (ft_free_all_split_alloc(split, lt->length));
+    lt->length++;
+    return (split);
+}
 
-	j = 0;
-	reslen = 0;
-	while (count > 0)
-	{
-		while (*str == c)
-			str++;
-		if (*str != c)
-		{
-			while (*str != c && *str)
-			{
-				reslen++;
-				str++;
-			}
-			res[j] = result(j, reslen, res, str);
-			reslen = 0;
-			j++;
-		}
-		count--;
-	}
-	res[j] = NULL;
-	return ((char **)res);
+static void *ft_split_by_char(char **split, char const *s, char c)
+{
+    size_t			i;
+    t_split_next	st;
+    t_split_next	lt;
+
+    i = 0;
+    lt.length = 0;
+    lt.start = 0;
+    while (s[i])
+    {
+        if (s[i] == c)
+        {
+            st.start = lt.start;
+            st.length = (i - lt.start);
+            if (i > lt.start && !ft_split_range(split, s, &st, &lt))
+                return (NULL);
+            lt.start = i + 1;
+        }
+        i++;
+    }
+    st.start = lt.start;
+    st.length = (i - lt.start);
+    if (i > lt.start && i > 0 && !ft_split_range(split, s, &st, &lt))
+        return (NULL);
+    split[lt.length] = 0;
+    return (split);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	reslen;
 	char	*str;
 	char	**res;
-	size_t	count;
+	int     count;
 
-	reslen = 0;
 	count = count_words(s, c);
 	str = (char *)s;
 	while (*str == c)
 		str++;
-	res = (char **) ft_calloc(sizeof(char *), count + 1);
+	res = (char **) ft_calloc(sizeof(s), (count + 1));
 	if (res == NULL)
 		return (NULL);
-	printres(str, c, res, count);
+    if (!ft_split_by_char(res, s, c))
+        return (NULL);
 	return ((char **)res);
 }

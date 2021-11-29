@@ -20,6 +20,9 @@
 # include <stdlib.h>
 # include <limits.h>
 
+//DELETE
+#include <stdio.h>
+
 typedef struct s_dlist	t_dlist;
 typedef struct s_data	t_data;
 
@@ -42,11 +45,12 @@ struct		s_data
 // PARSE INPUT
 t_dlist	*dlistnew(int64_t data);
 void	dlstadd_back(t_dlist **stack, t_dlist *newnode);
-void	check_argv(int argc, char **argv, t_data *data);
+void	check_argv(int argc, const char **argv, t_data *data);
 int		dupl_check(t_data *data);
-void	valid_check(int argc, char **argv);
+void	valid_check(int argc, const char **argv);
 void	args_trans(t_dlist **stack_a, char **args, int64_t	num);
-int64_t	multi_arg(int argc, char **argv, t_dlist **stack_a);
+int64_t	multi_arg(int argc, const char **argv, t_dlist **stack_a);
+int64_t	single_arg(const char *str, t_dlist **stack_a);
 void	init_data(t_data *data);
 void	error(char *errMsg);
 int		is_sorted(t_dlist *stack);

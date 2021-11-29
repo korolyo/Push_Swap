@@ -52,7 +52,7 @@ void	init_data(t_data *data)
 	data->size_b = 0;
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, const char **argv)
 {
 	t_data	data;
 
