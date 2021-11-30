@@ -26,6 +26,8 @@ int64_t	single_arg(const char *str, t_dlist **stack_a)
 	while (str_pos < str_len)
 	{
 		final = ft_atol(str + str_pos);
+		if (final < INT_MIN || final > INT_MAX)
+			error("Error");
 		newnode = dlistnew(final);
 		dlstadd_back(stack_a, newnode);
 		while ((str[str_pos] == '-' || ft_isdigit(str[str_pos]))
@@ -49,6 +51,8 @@ int64_t	multi_arg(int argc, const char **argv, t_dlist **stack_a)
 	while (i < argc)
 	{
 		final = ft_atol(argv[i]);
+		if (final < INT_MIN || final > INT_MAX)
+			error("Error");
 		newnode = dlistnew(final);
 		dlstadd_back(stack_a, newnode);
 		i++;
@@ -97,8 +101,6 @@ int	dupl_check(t_data *data)
 	{
 		tmp_b = tmp_a->next;
 		j = i + 1;
-		if (tmp_a->value < INT_MIN || tmp_a->value > INT_MAX)
-			error("Error");
 		while (j < data->size_a)
 		{
 			if (tmp_a->value == tmp_b->value)
