@@ -79,5 +79,6 @@ int64_t	*presort_ar(t_data *data, int64_t *min, int64_t *max, int64_t *med)
 	}
 	arr = bubble_sort(arr, data->size_a);
 	*med = arr[count / 2];
-	return (arr);
+	free(arr);
+	return (0);
 }

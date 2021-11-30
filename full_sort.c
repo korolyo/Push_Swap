@@ -61,10 +61,9 @@ void	full_sort(t_data *data)
 	int64_t	min;
 	int64_t	med;
 	int64_t	max;
-	int64_t	*arr;
 	int64_t	rotate_a;
 
-	arr = presort_ar(data, &min, &max, &med);
+	presort_ar(data, &min, &max, &med);
 	push_to_b(data, min, med, max);
 	if (data->stack_a->value == max)
 		ra(&data->stack_a);

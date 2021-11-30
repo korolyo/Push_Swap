@@ -14,90 +14,74 @@
 
 int64_t	single_arg(const char *str, t_dlist **stack_a)
 {
-    size_t	str_pos;
-    size_t	str_len;
-    int64_t final;
-    int64_t	count;
-    t_dlist	*newnode;
+	size_t	str_pos;
+	size_t	str_len;
+	int64_t	final;
+	int64_t	count;
+	t_dlist	*newnode;
 
-    str_pos = 0;
-    count = 0;
-    str_len = ft_strlen(str);
-    while (str_pos < str_len)
-    {
-        final = ft_atol(str + str_pos);
-        newnode = dlistnew(final);
-        dlstadd_back(stack_a, newnode);
-        while ((str[str_pos] == '-' || ft_isdigit(str[str_pos]))
-               && str_pos < str_len)
-            ++str_pos;
-        while (str[str_pos] == ' ' && str_pos < str_len)
-            ++str_pos;
-        ++count;
-    }
-    return (count);
+	str_pos = 0;
+	count = 0;
+	str_len = ft_strlen(str);
+	while (str_pos < str_len)
+	{
+		final = ft_atol(str + str_pos);
+		newnode = dlistnew(final);
+		dlstadd_back(stack_a, newnode);
+		while ((str[str_pos] == '-' || ft_isdigit(str[str_pos]))
+			&& str_pos < str_len)
+			++str_pos;
+		while (str[str_pos] == ' ' && str_pos < str_len)
+			++str_pos;
+		++count;
+	}
+	return (count);
 }
 
 int64_t	multi_arg(int argc, const char **argv, t_dlist **stack_a)
 {
 	int		i;
 	int64_t	final;
-    t_dlist	*newnode;
+	t_dlist	*newnode;
 
 	i = 1;
 	final = 0;
 	while (i < argc)
 	{
-        final = ft_atol(argv[i]);
-        newnode = dlistnew(final);
-        dlstadd_back(stack_a, newnode);
+		final = ft_atol(argv[i]);
+		newnode = dlistnew(final);
+		dlstadd_back(stack_a, newnode);
 		i++;
 	}
 	return (i - 1);
 }
 
-//void	args_trans(t_dlist **stack_a, char **args, int64_t	num)
-//{
-//	t_dlist	*newnode;
-//	int64_t	count;
-//	int64_t	val;
-//
-//	count = 0;
-//	val = 0;
-//	while (count < num)
-//	{
-//		val = ft_atol(args[count]);
-//		newnode = dlistnew(val);
-//		dlstadd_back(stack_a, newnode);
-//		count++;
-//	}
-
 void	valid_check(int argc, const char **argv)
 {
-    int	arg;
-    size_t	count;
-    size_t	str_len;
+	int		arg;
+	size_t	count;
+	size_t	str_len;
 
-    arg = 1;
-    while (arg < argc)
-    {
-        count = 0;
-        str_len = ft_strlen(argv[arg]);
-        if (str_len == 0)
-            error("Error");
-        while (count < str_len)
-        {
-            if ((!(ft_isdigit(argv[arg][count])) && argv[arg][count] != '-'
-                 && !((argv[arg][count] == ' ') && (argc == 2)))
-                || ((argv[arg][count + 1] == '\0'
-                     || argv[arg][count + 1] == ' ') && argv[arg][count] == '-')
-                || (count > 0 && (argv[arg][count] == '-'
-                                  && argv[arg][count - 1] != ' ')))
-                error("Error");
-            ++count;
-        }
-        ++arg;
-    }
+	arg = 1;
+	while (arg < argc)
+	{
+		count = 0;
+		str_len = ft_strlen(argv[arg]);
+		if (str_len == 0)
+			error("Error");
+		while (count < str_len)
+		{
+			if ((!(ft_isdigit(argv[arg][count])) && argv[arg][count] != '-'
+				&& !((argv[arg][count] == ' ') && (argc == 2)))
+				|| ((argv[arg][count + 1] == '\0'
+				|| argv[arg][count + 1] == ' ') && argv[arg][count] == '-')
+				|| (count > 0 && (argv[arg][count] == '-'
+					&& argv[arg][count - 1] != ' ')))
+				error("Error");
+			++count;
+		}
+		++arg;
+	}
 }
 
 int	dupl_check(t_data *data)
@@ -113,6 +97,8 @@ int	dupl_check(t_data *data)
 	{
 		tmp_b = tmp_a->next;
 		j = i + 1;
+		if (tmp_a->value < INT_MIN || tmp_a->value > INT_MAX)
+			error("Error");
 		while (j < data->size_a)
 		{
 			if (tmp_a->value == tmp_b->value)
@@ -128,12 +114,12 @@ int	dupl_check(t_data *data)
 
 void	check_argv(int argc, const char **argv, t_data *data)
 {
-    valid_check(argc, argv);
+	valid_check(argc, argv);
 	if (argc < 2)
 		exit(EXIT_SUCCESS);
-    else if (argc == 2)
-        data->size_a = single_arg(argv[1], &data->stack_a);
-    else if (argc > 2)
-	    data->size_a = multi_arg(argc, argv, &data->stack_a);
+	else if (argc == 2)
+		data->size_a = single_arg(argv[1], &data->stack_a);
+	else if (argc > 2)
+		data->size_a = multi_arg(argc, argv, &data->stack_a);
 	dupl_check(data);
 }
